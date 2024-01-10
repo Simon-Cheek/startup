@@ -1,1 +1,1 @@
-This was a test, now its a merge conflict! Wow!
+This merge conflict has been resolved!
