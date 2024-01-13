@@ -6,7 +6,7 @@
 
 ## Startup: Goal Setting Software for Collaborators (*Gollab*)
 
-Welcome to my startup, *Gollab*! This software stands as an oppurtunity for professionals of all industries to set, maintain and track goals related to productivity. Gollab offers the ability to both set personal goals and collaborate with friends on shared goals- this way professionals can check in on each other and work to lift each other up in their pursuits.
+Welcome to my startup, *Gollab*! This software stands as an oppurtunity for professionals of all industries to set, maintain and track goals related to productivity. Gollab offers the ability to both set personal goals and collaborate with friends on shared goals- this way professionals can check in on each other and work to lift each other up in their pursuits. <hr>
 
 ### Key Features:
 
@@ -16,6 +16,7 @@ Welcome to my startup, *Gollab*! This software stands as an oppurtunity for prof
 - The ability to see friend's goals
 - The ability to set shared goals
 - Statistics for past goal habits
+<hr>
 
 ### Web Related Technologies:
 
@@ -23,5 +24,6 @@ Welcome to my startup, *Gollab*! This software stands as an oppurtunity for prof
 - Authentication for Users as well as to verify friend lists
 - Database (MongoDB) to store user information, goals, and friend info
 - Websocket Data to update users on other's goals and information
+<hr>
 
 ### Sample UI
