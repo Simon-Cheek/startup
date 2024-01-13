@@ -27,3 +27,5 @@ Welcome to my startup, *Gollab*! This software stands as an oppurtunity for prof
 <hr>
 
 ### Sample UI
+
+![Sample UI for Gollab](/Assets/GollabUI.jpg)
