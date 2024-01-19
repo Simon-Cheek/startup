@@ -7,3 +7,10 @@
 - Avoid committing large files
 - Use 'git checkout' to peruse previous commits, and configure one to be the HEAD if you'd like to revert to that version
 - Fix merge conflicts by pulling from GitHub (merge) and then clarify conflicting lines in VSCode
+
+## Assignment 2: Launching an AWS Instance:
+
+- EC2 Instance creates a web server that can be accessed via SSH command
+- Key Value Pair (security) is needed to access the server (which is Linux)
+- Elastic IP Address has been associated and is: 54.173.84.241
+- Tech Stack consists of Node.JS, MongoDB, and Caddy2
