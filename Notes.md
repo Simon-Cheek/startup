@@ -14,3 +14,4 @@
 - Key Value Pair (security) is needed to access the server (which is Linux)
 - Elastic IP Address has been associated and is: 54.173.84.241
 - Tech Stack consists of Node.JS, MongoDB, and Caddy2
+- Domain Name is gollab.click ! and had DNS records connected to gollab.click as well as \*.gollab.click to redirect subdomains
