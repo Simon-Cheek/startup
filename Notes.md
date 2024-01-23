@@ -15,3 +15,10 @@
 - Elastic IP Address has been associated and is: 54.173.84.241
 - Tech Stack consists of Node.JS, MongoDB, and Caddy2
 - Domain Name is gollab.click ! and had DNS records connected to gollab.click as well as \*.gollab.click to redirect subdomains
+
+## Assignment 3: Obtain a Secure Connection using Caddy:
+
+- Caddy acts as a router to various servers attached to your domain
+- Caddy also allows for easy obtaining of security certificates (Let's Encrypt)
+- Linux/Ubuntu: when in view mode for a file (vi), use `vi` to enter view mode and then `i` to engage in input mode
+- Linux/Ubuntu: press `esc` to exit view mode and type `exit` to leave to server instance
