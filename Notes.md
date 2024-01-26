@@ -28,3 +28,7 @@
 - Table Elements include `<th>` for headers and then a set of `<tr>` rows that match the same number of headers
 - Image elements take either a file path or a direct URL
 - `<aside>` can be used for parts of the website not of principle importance
+- Default color input values can be set using `value=""`
+- Form elements are often wrapped in `<fieldset>`
+- `<svg>` elements provide support for animated images
+- `<canvas>` provides support for 2D Drawing
