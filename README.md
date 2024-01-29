@@ -29,6 +29,7 @@ Welcome to my startup, *Gollab*! This software stands as an oppurtunity for prof
 ### Sample UI
 
 ![Sample UI for Gollab](/Assets/GollabUI.jpg)
+<hr>
 
 ### HTML Deliverable:
 
@@ -37,4 +38,4 @@ Welcome to my startup, *Gollab*! This software stands as an oppurtunity for prof
     - A Profile Page to view goals and navigate through the application (profile.html)
     - A place to view and add friends (friendlist.html)
     - A place to view friend's profile (friend.html)
-    - A place to create new goals (create.html)
+    - A place to create new goals (create.html) 
