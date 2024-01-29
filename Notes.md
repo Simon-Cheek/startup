@@ -32,3 +32,7 @@
 - Form elements are often wrapped in `<fieldset>`
 - `<svg>` elements provide support for animated images
 - `<canvas>` provides support for 2D Drawing
+
+## Assignment 5: Startup HTML
+- Deployment to AWS Production includes deleting all files associated with that branch of production and then copying files in your directory and pasting them into production (uses shellscripts to do so)
+- Current content (HTML) will mimic what the app will do, but is not fully functional
