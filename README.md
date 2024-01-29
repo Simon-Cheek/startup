@@ -33,9 +33,14 @@ Welcome to my startup, *Gollab*! This software stands as an oppurtunity for prof
 
 ### HTML Deliverable:
 
-- Created 5 HTML Pages that include
+- **HTML Pages** Created 5 HTML Pages that include
     - A Main Page for Login (index.html)
     - A Profile Page to view goals and navigate through the application (profile.html)
     - A place to view and add friends (friendlist.html)
     - A place to view friend's profile (friend.html)
     - A place to create new goals (create.html) 
+- **Links** Created a Navigation that links to carious sections of the application, including friend lists, profiles, and more!
+- **Text** Text displays content of goals set as well as statistics
+- **Images** An image is used for both the website Icon and Logo
+- **DB/Login** Database is used for login (input on main page) as well as for storing goal information and presenting it
+- **WebSocket** Friend lists allow users to add friends to their profile and can view the profiles of others who have added them
