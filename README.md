@@ -29,3 +29,12 @@ Welcome to my startup, *Gollab*! This software stands as an oppurtunity for prof
 ### Sample UI
 
 ![Sample UI for Gollab](/Assets/GollabUI.jpg)
+
+### HTML Deliverable:
+
+- Created 5 HTML Pages that include
+    - A Main Page for Login (index.html)
+    - A Profile Page to view goals and navigate through the application (profile.html)
+    - A place to view and add friends (friendlist.html)
+    - A place to view friend's profile (friend.html)
+    - A place to create new goals (create.html)
