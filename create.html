@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gollab</title>
+    <link rel="icon" href="Assets/logo.ico">
+</head>
+
+<body>
+    <header>
+        <h1>Gollab</h1>
+        <h4>Goal Setting for Collaborators</h4>
+        <img src="Assets/logo.png" alt="Logo" width="200px">
+        <nav>
+            <menu>
+                <li><a href="index.html">Login (temp)</a></li>
+                <li><a href="profile.html">My Profile</a></li>
+                <li><a href="friendlist.html">Friends</a></li>
+                <li><a href="create.html">Set Goals</a></li>
+            </menu>
+        </nav>
+
+    </header>
+
+    <hr>
+
+    <main>
+        <h4>Create A New Goal</h4>
+        <form action="profile.html" method="get">
+            <p>Goal Type:</p>
+            <label for="daily">Daily</label>
+            <input type="radio" id="daily" name="goaltype" value="daily" checked>
+            <label for="weekly">Weekly</label>
+            <input type="radio" id="weekly" name="goaltype" value="weekly">
+            <p>Input Your Goal Here:</p>
+            <textarea name="goalcontent" id="goalcontent" cols="25" rows="10"></textarea>
+            <button type="submit">Create</button>
+        </form>
+
+
+    </main>
+
+    <hr>
+
+    <footer>
+        <p>Created by Simon Cheek</p>
+        <p><a href="https://github.com/Simon-Cheek/startup">GitHub Repository</a></p>
+    </footer>
+
+</body>
+
+</html>
