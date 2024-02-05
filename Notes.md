@@ -36,3 +36,11 @@
 ## Assignment 5: Startup HTML
 - Deployment to AWS Production includes deleting all files associated with that branch of production and then copying files in your directory and pasting them into production (uses shellscripts to do so)
 - Current content (HTML) will mimic what the app will do, but is not fully functional
+
+## Assignment 6: CSS Practice / Flex
+- Remember the transform property!
+- Animations can be made using `@keyframes`
+- Grid Layout allows for a 'minmax' property, which defines both min/max size for grid children
+- Flex doesn't affect parents or grandchildren, only children
+- Always include `<meta name="viewport" content="width=device-width, initial-scale=1" />` as a means of telling the browser to not try to shrink your website when devices change
+- Media Queries can be used to determine screen orientation (landscape vs portrait)
