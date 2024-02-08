@@ -13,61 +13,33 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container" id="main-navbar">
-                <div class="row align-items-center">
-                    <img class="img-fluid" src="Assets/logo.png" alt="Logo" width="100px">
-                    <a class=" navbar-brand" href="#">Gollab</a>
-                </div>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#"> <img src="Assets/logo.png" alt="Logo" width="100px" id="logo"><span
+                    id="main-title">Gollab</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="profile.html">Profile<span class="sr-only">(current)</span></a>
+                    </li>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Dropdown
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                        </li>
-                    </ul>
-                </div>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="goals.html">My Goals<span class="sr-only">(current)</span></a>
+                    </li>
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="friendlist.html">Friends<span class="sr-only">(current)</span></a>
+                    </li>
+
+                </ul>
             </div>
-
         </nav>
-
-        <h1><a href="profile.html">Gollab</a></h1>
-        <h4>Goal Setting for Collaborators</h4>
-        <nav>
-            <menu>
-                <li><a href="index.html">Login (temp)</a></li>
-                <li><a href="profile.html">My Profile</a></li>
-                <li><a href="friendlist.html">Friends</a></li>
-                <li><a href="create.html">Set Goals</a></li>
-            </menu>
-        </nav>
-
     </header>
 
-    <hr>
 
     <main>
         <div>
