@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -49,19 +51,30 @@
 
 
     <main>
-        <div>
-            <h4>Welcome to Gollab!</h4>
-            <p>Sign in to Continue:</p>
-        </div>
 
-        <div>
-            <form action="profile.html" method="get">
-                <label for="user">Username: </label>
-                <input type="text" name="user" id="user" required>
-                <label for="pass">Password: </label>
-                <input type="password" name="pass" id="pass" required>
-                <button type="submit">Login</button>
-            </form>
+        <div class="main-login">
+
+            <div class="description">
+                <h2 class="statement">Productivity Software</h2>
+                <h2 class="statement">for <span class="collab">Collaborators</span></h2>
+            </div>
+
+            <div>
+                <form action="index.html" method="GET" class="login">
+                    <h3>Login</h3>
+                    <section>
+                        <label for="user">Username</label>
+                        <input type="text" name="user" id="user">
+                    </section>
+
+                    <section>
+                        <label for="pw">Password</label>
+                        <input type="password" name="pw" id="pw">
+                    </section>
+
+                </form>
+            </div>
+
         </div>
 
     </main>
