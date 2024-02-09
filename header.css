@@ -9,6 +9,7 @@
 
 #logo {
     border-radius: 16px;
+    width: 80px;
 }
 
 #main-title {
@@ -21,6 +22,7 @@
 
 .nav-item {
     font-weight: 500;
+    font-size: 1.1em;
 }
 
 .nav-link {
@@ -31,6 +33,7 @@
     transition: all 250ms ease-out;
     display: inline-block;
     position: relative;
+    margin-right: 1em;
 }
 
 .nav-text::after {
