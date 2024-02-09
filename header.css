@@ -1,0 +1,56 @@
+.collapse {
+    justify-content: flex-end;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+
+#logo {
+    border-radius: 16px;
+}
+
+#main-title {
+    font-family: 'DM Serif Display';
+    font-size: 2.5em;
+    font-weight: 700;
+    font-style: italic;
+    margin: 0 0.5em;
+}
+
+.nav-item {
+    font-weight: 500;
+}
+
+.nav-link {
+    color: rgb(228, 236, 255) !important;
+}
+
+.nav-text {
+    transition: all 250ms ease-out;
+    display: inline-block;
+    position: relative;
+}
+
+.nav-text::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    border-radius: 16%;
+    bottom: 0;
+    left: 0;
+    background-color: rgb(228, 236, 255);
+    transition: transform 250ms ease-out;
+}
+
+.nav-text:hover {
+    display: inline-block;
+    transform: scale(1.1);
+}
+
+.nav-text:hover::after {
+    transform: scaleX(1);
+}
