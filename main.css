@@ -3,8 +3,10 @@
 }
 
 body {
-    background-color: rgb(36, 40, 46);
-    background-image: linear-gradient(rgb(36, 40, 46), rgb(18, 22, 26));
+    background-image: linear-gradient(rgba(20, 26, 32, 0.94), rgba(12, 16, 22, 0.98)), url(Assets/main-background.jpg);
+    background-position: center;
+    background-size: 200vh;
+    background-repeat: no-repeat;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -13,6 +15,8 @@ body {
 main {
     padding: 1em 1em;
     flex: 1;
+    display: flex;
+    justify-content: center;
 }
 
 header {
@@ -20,11 +24,7 @@ header {
 }
 
 footer {
-    flex: 0 80px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    flex: 0 40px;
 }
 
 .statement {
@@ -34,13 +34,14 @@ footer {
 }
 
 .collab {
-    color: rgb(160, 200, 250);
+    color: rgb(100, 160, 250);
     font-style: italic;
-    font-size: 1.2em;
+    font-size: 1.3em;
 }
 
 .main-login {
     display: flex;
+    width: 100%;
     justify-content: space-evenly;
     align-items: center;
     min-height: 300px;
@@ -59,4 +60,48 @@ footer {
 
 .login h3 {
     color: rgb(160, 200, 250);
+    margin-bottom: 1em;
+}
+
+
+input {
+    border-radius: 12px;
+    padding: 4px;
+    background-color: rgb(230, 245, 255);
+    margin-bottom: 1em;
+    color: black;
+}
+
+label {
+    margin-right: 4px;
+}
+
+
+.login-btn {
+    color: black;
+    background-color: rgb(230, 245, 255);
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 0.3em 0.5em;
+}
+
+.credits {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.credits p {
+    color: rgb(228, 236, 255);
+    font-size: 0.8em;
+}
+
+.credits p a {
+    color: rgb(160, 200, 250);
+}
+
+.credit-dot {
+    margin: 0 1em;
+    font-size: 1em;
 }
