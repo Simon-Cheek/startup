@@ -11,6 +11,9 @@ body {
     flex-direction: column;
 }
 
+
+/* LOGIN PAGE STYLING */
+
 main {
     padding: 1em 1em;
     flex: 1;
@@ -106,6 +109,34 @@ label {
     font-size: 1em;
 }
 
+
+/* PROFILE PAGE STYLING */
+
+.main-profile {
+    display: flex;
+    padding: 2em;
+    border-radius: 12px;
+    min-width: 50%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(140, 180, 255, 0.15);
+    border: 1px solid rgb(160, 180, 200);
+}
+
+.main-profile section,
+.main-profile section div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#welcome {
+    padding-bottom: 0.2em;
+    margin-bottom: 0.5em;
+    border-bottom: 1px solid rgb(228, 236, 255);
+}
 
 
 @media (max-width: 900px) and (min-width: 750px) {
