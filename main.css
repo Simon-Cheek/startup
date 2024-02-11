@@ -6,8 +6,7 @@ body {
     background-image: linear-gradient(rgba(20, 26, 32, 0.94), rgba(12, 16, 22, 0.98)), url(Assets/main-background.jpg);
     background-position: center;
     background-size: 200vh;
-    background-repeat: no-repeat;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
@@ -51,6 +50,7 @@ footer {
     display: flex;
     background-color: rgba(180, 215, 255, 0.1);
     padding: 2em;
+    margin: 0.5em 0;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -120,5 +120,13 @@ label {
 @media (max-width: 750px) {
     .main-login {
         flex-direction: column;
+    }
+
+    .credits {
+        flex-direction: column;
+    }
+
+    .credit-dot {
+        display: none;
     }
 }
