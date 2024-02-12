@@ -51,26 +51,38 @@
 
     <main>
 
-        <section>
+        <section class="main-display">
 
-            <h4 class="underline">User's Goals</h4>
+            <h3 class="statement underline">Username's Goals</h3>
 
-            <button>Toggle Daily/Weekly</button>
+            <button class="bttn-default" id="bttn-toggle">Toggle Daily/Weekly</button>
 
-            <h5 class="underline">Active</h5>
-            <div>
-                <p>Go to the Store</p>
-                <p>Get Car Insurance</p>
+            <div class="goal-list">
+                <h4 class="underline">Active</h4>
+                <div class="goal">
+                    <p>Finish CS260 HW</p>
+                    <button class="finish-goal">Complete!</button>
+                </div>
+                <div class="goal">
+                    <p>Call Parents</p>
+                    <button class="finish-goal">Complete!</button>
+                </div>
+                <div class="goal">
+                    <p>Shower</p>
+                    <button class="finish-goal">Complete!</button>
+                </div>
             </div>
 
-            <h5 class="underline">Expired</h5>
             <!-- color of goals will vary depending on completion status -->
-            <div>
+            <div class="goal-list">
+                <h4 class="underline">Expired</h4>
                 <p>Eat Food</p>
                 <p>Finish Biology HW</p>
                 <p>Make fresh bread</p>
                 <p>Apply to Graduate School</p>
             </div>
+
+            <a href="profile.html"><button class="bttn-default">Back to Profile</button></a>
         </section>
 
 

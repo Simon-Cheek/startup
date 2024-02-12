@@ -140,11 +140,12 @@ label {
 
 /* PROFILE PAGE STYLING */
 
-.main-profile {
+.main-display {
     display: flex;
     padding: 2em;
     border-radius: 12px;
-    min-width: 50%;
+    padding: 2em 4em;
+    /* min-width: 50%; */
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
@@ -152,8 +153,8 @@ label {
     border: 1px solid rgb(160, 180, 200);
 }
 
-.main-profile section,
-.main-profile section {
+.main-display section,
+.main-display .goal-list {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -191,7 +192,7 @@ label {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.view-goals {
+.bttn-default {
     background-color: rgb(100, 160, 250);
     padding: 0.2em 0.5em;
     color: white;
@@ -202,6 +203,10 @@ label {
 
 
 /* GOALS LIST STYLING */
+
+#bttn-toggle {
+    margin-bottom: 1em;
+}
 
 
 
