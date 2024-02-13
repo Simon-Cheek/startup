@@ -53,9 +53,8 @@
 
         <div class="main-display">
             <h3 class="statement collab underline">Friends</h3>
-            <p id="friend-desc">Friends are those who's profiles you have access to. In order to add users to your
-                profile, input their
-                username at the bottom.</p>
+            <p id="friend-desc">Friends are those who's profiles you have access to. In order for friends to see your
+                profile, you must add them directly.</p>
 
 
             <div class="main-friendlist">
@@ -65,22 +64,23 @@
                     <form action="friendlist.html" method="get">
                         <label for="newfriend">Username </label>
                         <input type="text" id="newfriend" name="newfriend" required>
-                        <button type="submit">Add</button>
+                        <button type="submit" class="bttn-default">Add</button>
                     </form>
                 </div>
 
                 <div class="friendlist list-display">
-                    <div>
+                    <div class="friend">
                         <p>Simon593462</p>
-                        <a href="friend.html"><button>View Profile</button></a>
-                        <button>Remove From List</button>
+                        <a href="friend.html"><button class="bttn-default bttn-small">View Profile</button></a>
+                        <button class="bttn-default bttn-delete bttn-small">Remove From List</button>
                     </div>
 
-                    <div>
+                    <div class="friend">
                         <p>Cala49</p>
-                        <a href="friend.html"><button>View Profile</button></a>
-                        <button>Remove From List</button>
+                        <a href="friend.html"><button class="bttn-default bttn-small">View Profile</button></a>
+                        <button class="bttn-default bttn-delete bttn-small">Remove From List</button>
                     </div>
+
                 </div>
 
             </div>
