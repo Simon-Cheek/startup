@@ -44,3 +44,7 @@
 - Flex doesn't affect parents or grandchildren, only children
 - Always include `<meta name="viewport" content="width=device-width, initial-scale=1" />` as a means of telling the browser to not try to shrink your website when devices change
 - Media Queries can be used to determine screen orientation (landscape vs portrait)
+
+## Assignment 7: Startup CSS
+- Optimize your code! Try to create template CSS classes that can be used throughout rather than restyling every single page and element
+- Remember that flex only affects children, use `align-items` to counteract how elements interact with the cross axis
