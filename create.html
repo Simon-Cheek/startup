@@ -50,18 +50,23 @@
     </header>
 
     <main>
-        <h4>Create A New Goal</h4>
-        <form action="profile.html" method="get">
-            <p>Goal Type:</p>
-            <label for="daily">Daily</label>
-            <input type="radio" id="daily" name="goaltype" value="daily" checked>
-            <label for="weekly">Weekly</label>
-            <input type="radio" id="weekly" name="goaltype" value="weekly">
-            <p>Input Your Goal Here:</p>
-            <textarea name="goalcontent" id="goalcontent" cols="25" rows="10"></textarea>
-            <button type="submit">Create</button>
-        </form>
+        <section class="main-display">
+            <h4 class="statement collab underline">Create A New Goal</h4>
+            <form action="profile.html" method="get" class="create-goal">
+                <h5 class=''>Goal Type:</h5>
+                <div class="goal-selection underline">
+                    <label for="daily">Daily</label>
+                    <input type="radio" id="daily" name="goaltype" value="daily" checked>
+                    <label for="weekly">Weekly</label>
+                    <input type="radio" id="weekly" name="goaltype" value="weekly">
+                </div>
 
+                <h5>Input Your Goal Here:</h5>
+                <textarea name="goal-content" id="goal-content" cols="25" rows="8"></textarea>
+                <button type="submit" class="bttn-default">Create</button>
+            </form>
+            <a href="profile.html"><button class="bttn-default bttn-delete">Cancel</button></a>
+        </section>
 
     </main>
 

@@ -40,6 +40,14 @@ button {
     outline: none !important;
 }
 
+/* REGISTER STYLING */
+
+#register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 /* LOGIN PAGE STYLING */
 
@@ -86,6 +94,7 @@ footer {
     display: flex;
     background-color: rgba(180, 215, 255, 0.1);
     padding: 2em;
+    padding-bottom: 1em;
     margin: 0.5em 0;
     flex-direction: column;
     justify-content: center;
@@ -142,6 +151,11 @@ label {
     font-size: 1em;
 }
 
+.signup-prompt {
+    font-size: 12px;
+    font-style: italic;
+    margin-top: 1.2em;
+}
 
 /* PROFILE PAGE STYLING */
 
@@ -200,12 +214,12 @@ label {
 
 .bttn-default {
     background-color: rgb(100, 160, 250);
-    padding: 0.2em 0.5em;
+    padding: 0.15em 0.45em;
     color: white;
     border: none;
     border-radius: 8px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    margin: 0 0.3em;
+    margin: 0.3em;
 }
 
 .bttn-delete {
@@ -255,6 +269,31 @@ label {
 .bttn-small {
     font-size: 12px;
 }
+
+
+/* GOAL CREATION STYLING */
+
+.create-goal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.goal-selection {
+    margin-bottom: 1em;
+}
+
+#daily {
+    margin-right: 1em;
+}
+
+#goal-content {
+    margin-bottom: 0.5em;
+    border-radius: 12px;
+    padding: 0.5em;
+    color: black
+}
+
 
 
 

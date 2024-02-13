@@ -49,55 +49,25 @@
         </nav>
     </header>
 
-    <main>
+    <main id="register">
+        <section class="main-display">
+            <h4 class="statement collab underline">Register</h4>
+            <form action="profile.html" method="get" class="create-user">
+                <section>
+                    <label for="user">Username</label>
+                    <input type="text" name="user" id="user">
+                </section>
 
-        <!-- <div> -->
-        <div class="main-display">
-            <section>
-                <h1 class="statement underline">Welcome, <span class="collab">Username</span></h1>
-                <p class="blue">4 Active Goals</p>
-                <p class="green">10 Completed Goals this Month</p>
-                <p class="red">4 Expired Goals this Month</p>
-            </section>
-
-
-            <section class="list-display">
-                <h3 class="underline">Daily Goals</h3>
-                <div class="goal">
-                    <p>Finish CS260 HW</p>
-                    <button class="finish-goal">Complete</button>
-                    <button class="bttn-default bttn-delete">Cancel</button>
-                </div>
-                <div class="goal">
-                    <p>Call Parents</p>
-                    <button class="finish-goal">Complete!</button>
-                    <button class="bttn-default bttn-delete">Cancel</button>
-                </div>
-                <div class="goal">
-                    <p>Shower</p>
-                    <button class="finish-goal">Complete!</button>
-                    <button class="bttn-default bttn-delete">Cancel</button>
-                </div>
-            </section>
-
-
-            <section class="list-display">
-                <h3 class="underline">Weekly Goals</h3>
-                <p>You haven't set any weekly goals yet!</p>
-            </section>
-
-            <div>
-                <a href="goals.html"><button class="bttn-default">View All Goals</button></a>
-                <a href="create.html"><button class="bttn-default">Create Goal</button></a>
-            </div>
-        </div>
-        <!-- </div> -->
-
-
-
+                <section>
+                    <label for="pw">Password</label>
+                    <input type="password" name="pw" id="pw">
+                </section>
+                <button type="submit" class="bttn-default">Create</button>
+            </form>
+            <a href="index.html"><button class="bttn-default bttn-delete">Cancel</button></a>
+        </section>
 
     </main>
-
 
     <footer>
         <div class="credits">
@@ -114,7 +84,6 @@
         </div>
 
     </footer>
-
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
