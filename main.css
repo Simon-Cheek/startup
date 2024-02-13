@@ -36,6 +36,10 @@ body {
     margin-bottom: 0.5em;
 }
 
+button {
+    outline: none !important;
+}
+
 
 /* LOGIN PAGE STYLING */
 
@@ -57,16 +61,17 @@ footer {
     padding-top: 1em;
 }
 
-.statement {
-    font-family: 'Prompt', sans-serif;
-    font-weight: 400;
-    font-size: 2.5em;
-}
-
 .collab {
     color: rgb(100, 160, 250);
     font-style: italic;
     font-size: 1.3em;
+}
+
+
+.statement {
+    font-family: 'Prompt', sans-serif;
+    font-weight: 400;
+    font-size: 2.5em;
 }
 
 .main-login {
@@ -150,7 +155,8 @@ label {
     justify-content: flex-start;
     align-items: center;
     background-color: rgba(140, 180, 255, 0.15);
-    border: 1px solid rgb(160, 180, 200);
+    border: 1px solid rgb(120, 150, 180);
+    text-align: center;
 }
 
 .main-display section,
@@ -161,7 +167,7 @@ label {
     align-items: center;
 }
 
-.goal-list {
+.list-display {
     margin-bottom: 1em;
     padding: 1em;
     background-color: rgba(228, 236, 255, 0.05);
@@ -208,6 +214,21 @@ label {
     margin-bottom: 1em;
 }
 
+
+/* FRIENDS LIST STYLING  */
+
+
+#friend-desc {
+    max-width: 500px;
+}
+
+.main-friendlist {
+    display: flex;
+}
+
+.add-friend {}
+
+.friendlist {}
 
 
 @media (max-width: 900px) and (min-width: 750px) {
