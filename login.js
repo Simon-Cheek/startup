@@ -1,7 +1,12 @@
 function login() {
     const userName = document.querySelector("#user");
-    localStorage.setItem("username", userName.value);
-    window.location.href = "profile.html";
+    if (userName.value.length > 40) {
+        alert("Username is too long!");
+    } else {
+        localStorage.setItem("username", userName.value);
+        window.location.href = "profile.html";
+    }
+
 }
 
 const loginForm = document.querySelector("#login-form");
