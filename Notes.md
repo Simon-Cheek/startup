@@ -48,3 +48,8 @@
 ## Assignment 7: Startup CSS
 - Optimize your code! Try to create template CSS classes that can be used throughout rather than restyling every single page and element
 - Remember that flex only affects children, use `align-items` to counteract how elements interact with the cross axis
+
+## Assignment 8: Javascript
+- LOCALSTORAGE: Use the methods `setItem`, `getItem`, `removeItem`, and `clear()` with localStorage to access local database with browser
+- Simulate backend by using Javascript to pull data from localstorage and insert into the front end
+- If you use localstorage with objects, you must convert to string using JSON methods
