@@ -306,7 +306,13 @@ label {
 }
 
 .goal-selection {
+    margin-bottom: 0.2em;
+}
+
+.goal-deadline {
+    margin-top: 0.5em;
     margin-bottom: 1em;
+    border: none;
 }
 
 #daily {

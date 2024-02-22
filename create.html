@@ -54,12 +54,20 @@
             <h4 class="statement collab underline">Create A New Goal</h4>
             <form action="profile.html" method="get" class="create-goal">
                 <h5 class=''>Goal Type:</h5>
-                <div class="goal-selection underline">
+                <div class="goal-selection">
                     <label for="daily">Daily</label>
                     <input type="radio" id="daily" name="goaltype" value="daily" checked>
                     <label for="weekly">Weekly</label>
                     <input type="radio" id="weekly" name="goaltype" value="weekly">
                 </div>
+
+                <div class="underline">
+                    <label for="due-date">
+                        <h5>Deadline:</h5>
+                    </label>
+                    <input type="date" class="goal-deadline">
+                </div>
+
 
                 <h5>Input Your Goal Here:</h5>
                 <textarea name="goal-content" id="goal-content" cols="25" rows="8"></textarea>
