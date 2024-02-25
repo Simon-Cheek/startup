@@ -22,6 +22,8 @@
 - Caddy also allows for easy obtaining of security certificates (Let's Encrypt)
 - Linux/Ubuntu: when in view mode for a file (vi), use `vi` to enter view mode and then `i` to engage in input mode
 - Linux/Ubuntu: press `esc` to exit view mode and type `exit` to leave to server instance
+- Common Shell Commands: `echo`, prints to the console (or outputs), `cat` outputs contents of a file, `grep` is a regex search, `wc` counts words in a file, `sudo` executes a command as an administrator, `ssh` creates a secure shell on a remote computer, `dig` shows DNS info for a website, and `man` opens up the manual
+- Shell symbols: `|` takes the output of one command and passes it into the next, `>` redirects output into a file (overwrite), and `>>` outputs into a file (append)
 
 ## Assignment 4: HTML
 
@@ -53,3 +55,4 @@
 - LOCALSTORAGE: Use the methods `setItem`, `getItem`, `removeItem`, and `clear()` with localStorage to access local database with browser
 - Simulate backend by using Javascript to pull data from localstorage and insert into the front end
 - If you use localstorage with objects, you must convert to string using JSON methods
+- Regex Flags: `i` doesn't care about capitalization, `g` searches globally, `d` generates indices for matches, `s` allows . to match with newline characters, `y` performs a 'sticky' search, `m` allows ^ and $ to match next to newline characters
