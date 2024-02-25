@@ -52,7 +52,7 @@
     <main>
         <section class="main-display">
             <h4 class="statement collab underline">Create A New Goal</h4>
-            <form action="profile.html" method="get" class="create-goal">
+            <form action="profile.html" method="get" class="create-goal" id="create-goal">
                 <h5 class=''>Goal Type:</h5>
                 <div class="goal-selection">
                     <label for="daily">Daily</label>
@@ -70,7 +70,7 @@
 
 
                 <h5>Input Your Goal Here:</h5>
-                <textarea name="goal-content" id="goal-content" cols="25" rows="8"></textarea>
+                <textarea name="goal-content" id="goal-content" cols="25" rows="5"></textarea>
                 <button type="submit" class="bttn-default">Create</button>
             </form>
             <a href="profile.html"><button class="bttn-default bttn-delete">Cancel</button></a>
@@ -103,6 +103,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+    <script src="create.js"></script>
 </body>
 
 </html>
