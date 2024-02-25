@@ -16,6 +16,30 @@ createForm.addEventListener('submit', (e) => {
     } else if (!goalContent.value || !dueDate.value) {
         alert("Please insert a goal and a due date!");
     } else {
-        alert("Success!");
+        // create the goal here and add to local Storage
+        if (!localStorage.getItem("goalList")) {
+            // create goalList array if not already in existance, store as STRING
+            const goalArray = []
+            localStorage.setItem("goalList", JSON.stringify(goalArray));
+        }
+        // assign default username if not existant (temporary)
+        let currentUser = localStorage.getItem("username");
+        if (!currentUser) {
+            localStorage.setItem("username", "username");
+            currentUser = "username";
+        }
+        // create new Goal
+        const newGoal = {
+            user: currentUser,
+            type: goalType.value,
+            content: goalContent.value,
+            date: dueDate.value
+        }
+        // add it to localStorage
+        goalList = JSON.parse(localStorage.getItem("goalList"));
+        goalList.push(newGoal);
+        localStorage.setItem("goalList", JSON.stringify(goalList));
+        // redirect
+        window.location.href = "profile.html";
     }
 })
