@@ -47,7 +47,8 @@ createForm.addEventListener('submit', (e) => {
             user: currentUser,
             type: goalType.value,
             content: goalContent.value,
-            date: goalDate
+            date: goalDate,
+            completed: false
         }
 
         // add it to localStorage

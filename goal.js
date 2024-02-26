@@ -9,33 +9,28 @@ if (localStorage.getItem("username")) {
 // place the goals in the list-display
 const dailyList = document.querySelector("#daily-list-js");
 const weeklyList = document.querySelector("#weekly-list-js")
+const goals = localStorage.getItem("goalList")
+const totalGoals = JSON.parse(goals);
 
+// check and get user
+let currentUser = localStorage.getItem("username");
+if (!currentUser) {
+    currentUser = "username";
+}
+
+// fetch today's date
+const curDate = new Date();
 
 
 // Abstract Function for inserting Goals into a DIV
 function inputGoals(goalType, typeStr) {
 
-    // check and get user
-    let currentUser = localStorage.getItem("username");
-    if (!currentUser) {
-        currentUser = "username";
-    }
-
-    const goals = localStorage.getItem("goalList")
-
-
     if (goals) {
 
         // add Goals to daily list that match current user
         // GOALS: user, type, content, date
-        let activeDailyGoals = [];
-        const totalGoals = JSON.parse(goals);
-        // console.log(totalGoals);
 
-
-        // filter for user's daily goals that are due today
-        const curDate = new Date()
-
+        // filter goals depending on status, daily goals due today, weekly goals due within a week
         let userGoals = [];
         if (typeStr == "daily") {
             userGoals = totalGoals.filter((goal) => (goal.user == currentUser) && (goal.type == "daily") && (new Date(goal.date).getDate() == curDate.getDate()) && (new Date(goal.date).getMonth() == curDate.getMonth()));
@@ -102,6 +97,59 @@ function inputGoals(goalType, typeStr) {
     }
 }
 
+
+function updateStatus() {
+
+    // count active, completed, and expired
+    let activeCount = 0;
+    let completedCount = 0;
+    let expiredCount = 0;
+
+    if (goals) {
+
+        // obtain current user's goals
+        const allUserGoals = totalGoals.filter((goal) => goal.user = currentUser);
+
+        for (const goal of allUserGoals) {
+
+            // calculate time difference between due date and current date
+            let goalDate = new Date(goal.date).getTime();
+            let timeDiff = goalDate - curDate.getTime();
+
+            // add active goals to count
+            if (!goal.completed && timeDiff > 0) {
+                activeCount++;
+            } else if (goal.completed) {
+                completedCount++;
+            } else {
+                expiredCount++;
+            }
+        } // end for loop
+
+        const activeStatus = document.querySelector("#active-goals");
+        const completedStatus = document.querySelector("#completed-goals");
+        const expiredStatus = document.querySelector("#expired-goals");
+
+        activeStatus.innerText = (activeCount != 1) ? `${activeCount} Active Goals` : `${activeCount} Active Goal`;
+        completedStatus.innerText = (completedCount != 1) ? `${completedCount} Completed Goals` : `${completedCount} Completed Goal`;
+        expiredStatus.innerText = (expiredCount != 1) ? `${expiredCount} Expired Goals` : `${expiredCount} Expired Goal`;
+
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 inputGoals(dailyList, "daily");
 inputGoals(weeklyList, "weekly");
+updateStatus();
 
