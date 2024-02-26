@@ -33,10 +33,10 @@ function inputGoals(goalType, typeStr) {
         // filter goals depending on status, daily goals due today, weekly goals due within a week
         let userGoals = [];
         if (typeStr == "daily") {
-            userGoals = totalGoals.filter((goal) => (goal.user == currentUser) && (goal.type == "daily") && (new Date(goal.date).getDate() == curDate.getDate()) && (new Date(goal.date).getMonth() == curDate.getMonth()));
+            userGoals = totalGoals.filter((goal) => (goal.user == currentUser) && (goal.type == "daily") && (goal.completed === false) && (new Date(goal.date).getDate() == curDate.getDate()) && (new Date(goal.date).getMonth() == curDate.getMonth()));
         } else {
             userGoals = totalGoals.filter((goal) => {
-                if (goal.user != currentUser || goal.type != "weekly") {
+                if (goal.user != currentUser || goal.type != "weekly" || goal.completed === true) {
                     return false;
                 }
 
@@ -74,6 +74,11 @@ function inputGoals(goalType, typeStr) {
                 let finishButton = document.createElement("button");
                 finishButton.classList.add("finish-goal");
                 finishButton.innerText = "Complete";
+                finishButton.addEventListener("click", () => {
+                    goal.completed = true;
+                    localStorage.setItem("goalList", JSON.stringify(totalGoals));
+                    location.reload();
+                })
                 goalDiv.appendChild(finishButton);
 
                 let cancelButton = document.createElement("button");
@@ -98,6 +103,7 @@ function inputGoals(goalType, typeStr) {
 }
 
 
+// updates the goal count for each category on profile page
 function updateStatus() {
 
     // count active, completed, and expired
@@ -108,7 +114,7 @@ function updateStatus() {
     if (goals) {
 
         // obtain current user's goals
-        const allUserGoals = totalGoals.filter((goal) => goal.user = currentUser);
+        const allUserGoals = totalGoals.filter((goal) => goal.user == currentUser);
 
         for (const goal of allUserGoals) {
 
@@ -119,7 +125,7 @@ function updateStatus() {
             // add active goals to count
             if (!goal.completed && timeDiff > 0) {
                 activeCount++;
-            } else if (goal.completed) {
+            } else if (goal.completed === true) {
                 completedCount++;
             } else {
                 expiredCount++;
@@ -137,15 +143,6 @@ function updateStatus() {
     }
 
 }
-
-
-
-
-
-
-
-
-
 
 
 
