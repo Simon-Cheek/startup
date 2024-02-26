@@ -42,6 +42,7 @@ createForm.addEventListener('submit', (e) => {
         }
 
         // create new Goal
+        console.log(goalDate);
         const newGoal = {
             user: currentUser,
             type: goalType.value,
@@ -53,6 +54,7 @@ createForm.addEventListener('submit', (e) => {
         const goalList = JSON.parse(localStorage.getItem("goalList"));
         goalList.push(newGoal);
         localStorage.setItem("goalList", JSON.stringify(goalList));
+        console.log(localStorage.getItem("goalList"));
 
         // redirect to profile page
         window.location.href = "profile.html";
