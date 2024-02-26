@@ -83,6 +83,11 @@ function inputGoals(goalType, typeStr) {
 
                 let cancelButton = document.createElement("button");
                 cancelButton.classList.add("bttn-default", "bttn-delete");
+                cancelButton.addEventListener("click", () => {
+                    totalGoals.splice(totalGoals.indexOf(goal), 1);
+                    localStorage.setItem("goalList", JSON.stringify(totalGoals));
+                    location.reload();
+                })
                 cancelButton.innerText = "Cancel";
                 goalDiv.appendChild(cancelButton);
 
