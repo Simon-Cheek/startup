@@ -22,6 +22,45 @@ if (!currentUser) {
 const curDate = new Date();
 
 
+// inserts goals into div
+function injectGoalHtml(goalList, area) {
+
+    for (const goal of goalList) {
+
+        // create a div with the goals
+        let goalDiv = document.createElement("div");
+        goalDiv.classList.add("goal");
+
+        let content = document.createElement("p");
+        content.innerText = goal.content;
+        goalDiv.appendChild(content);
+
+        let finishButton = document.createElement("button");
+        finishButton.classList.add("finish-goal");
+        finishButton.innerText = "Complete";
+        finishButton.addEventListener("click", () => {
+            goal.completed = true;
+            localStorage.setItem("goalList", JSON.stringify(totalGoals));
+            location.reload();
+        })
+        goalDiv.appendChild(finishButton);
+
+        let cancelButton = document.createElement("button");
+        cancelButton.classList.add("bttn-default", "bttn-delete");
+        cancelButton.addEventListener("click", () => {
+            totalGoals.splice(totalGoals.indexOf(goal), 1);
+            localStorage.setItem("goalList", JSON.stringify(totalGoals));
+            location.reload();
+        })
+        cancelButton.innerText = "Cancel";
+        goalDiv.appendChild(cancelButton);
+
+        area.appendChild(goalDiv);
+    }
+}
+
+
+
 // Abstract Function for inserting Goals into a DIV
 function inputGoals(goalType, typeStr) {
 
@@ -61,40 +100,9 @@ function inputGoals(goalType, typeStr) {
 
         } else {
 
-            for (const goal of userGoals) {
+            injectGoalHtml(userGoals, goalType);
 
-                // create a div with the goals
-                let goalDiv = document.createElement("div");
-                goalDiv.classList.add("goal");
-
-                let content = document.createElement("p");
-                content.innerText = goal.content;
-                goalDiv.appendChild(content);
-
-                let finishButton = document.createElement("button");
-                finishButton.classList.add("finish-goal");
-                finishButton.innerText = "Complete";
-                finishButton.addEventListener("click", () => {
-                    goal.completed = true;
-                    localStorage.setItem("goalList", JSON.stringify(totalGoals));
-                    location.reload();
-                })
-                goalDiv.appendChild(finishButton);
-
-                let cancelButton = document.createElement("button");
-                cancelButton.classList.add("bttn-default", "bttn-delete");
-                cancelButton.addEventListener("click", () => {
-                    totalGoals.splice(totalGoals.indexOf(goal), 1);
-                    localStorage.setItem("goalList", JSON.stringify(totalGoals));
-                    location.reload();
-                })
-                cancelButton.innerText = "Cancel";
-                goalDiv.appendChild(cancelButton);
-
-                goalType.appendChild(goalDiv);
-            }
         }
-
     } else {
         let placeholder = document.createElement("p");
         placeholder.innerText = `You haven't set any ${typeStr} goals yet!`;
@@ -183,38 +191,7 @@ if (totalList && goals) {
     } else {
 
         // add to DOM
-        for (const goal of userGoals) {
-
-            // create a div with the goals
-            let goalDiv = document.createElement("div");
-            goalDiv.classList.add("goal");
-
-            let content = document.createElement("p");
-            content.innerText = goal.content;
-            goalDiv.appendChild(content);
-
-            let finishButton = document.createElement("button");
-            finishButton.classList.add("finish-goal");
-            finishButton.innerText = "Complete";
-            finishButton.addEventListener("click", () => {
-                goal.completed = true;
-                localStorage.setItem("goalList", JSON.stringify(totalGoals));
-                location.reload();
-            })
-            goalDiv.appendChild(finishButton);
-
-            let cancelButton = document.createElement("button");
-            cancelButton.classList.add("bttn-default", "bttn-delete");
-            cancelButton.addEventListener("click", () => {
-                totalGoals.splice(totalGoals.indexOf(goal), 1);
-                localStorage.setItem("goalList", JSON.stringify(totalGoals));
-                location.reload();
-            })
-            cancelButton.innerText = "Cancel";
-            goalDiv.appendChild(cancelButton);
-
-            totalList.appendChild(goalDiv);
-        }
+        injectGoalHtml(userGoals, totalList);
     }
 
 
@@ -230,10 +207,11 @@ if (totalList && goals) {
     });
 
     if (userGoals.length === 0) {
+        console.log("reached!");
 
         // display default
         let placeholder = document.createElement("p");
-        placeholder.innerText = `You haven't set any goals yet!`;
+        placeholder.innerText = `You haven't finished any goals yet!`;
         const expiredList = document.querySelector("#expired-list");
         expiredList.appendChild(placeholder);
     } else {
@@ -255,9 +233,14 @@ if (totalList && goals) {
 } else if (totalList) {
 
     // display default
-    let placeholder = document.createElement("p");
+    const placeholder = document.createElement("p");
     placeholder.innerText = `You haven't set any goals yet!`;
     totalList.appendChild(placeholder);
+
+    const expiredList = document.querySelector("#expired-list");
+    const expiredPlaceholder = document.createElement("p");
+    expiredPlaceholder.innerText = `You haven't finished any goals yet!`
+    expiredList.appendChild(expiredPlaceholder);
 }
 
 
