@@ -340,6 +340,11 @@ label {
     background-color: rgba(174, 196, 252, 0.85);
     animation-name: popup-fade;
     animation-duration: 1s;
+    transform: translate(-50%, 0);
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @keyframes popup-fade {
