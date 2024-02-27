@@ -54,3 +54,11 @@ Welcome to my startup, *Gollab*! This software stands as an oppurtunity for prof
 - **Application Elements**: Properly styled and professional looking
 - **Application Text Content**: Consistent Fonts, Coloration, and Hierarchy!
 - **Application Images**: Images pulled from Unisplash (background) and a personally designed logo
+
+### Javascript Deliverable:
+
+- **Javascript Support for Future Login**: Success! Logging in right now automatically creates an account (sign up page not fully functional)
+- **Javascript Support for Future Database**: Success! Very intensive integration of LocalStorage as placeholder for User, Friend, and Goal Data
+- **Javascript Support for Web Socketing**: Success! Friend addition pop ups appear every ~15 seconds on every screen
+- **Javascript Support for App Interaction Logic**: Success! (Almost) full CRUD functionality for friends and goal data. Update (U) coming soon!
+- **Note**: Future features to be added are goal due dates displaying with the goal as well as update functionality for goals
