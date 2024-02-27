@@ -145,8 +145,83 @@ function updateStatus() {
 }
 
 
+// for profile.html
 
-inputGoals(dailyList, "daily");
-inputGoals(weeklyList, "weekly");
-updateStatus();
+if (dailyList) {
+    inputGoals(dailyList, "daily");
+    inputGoals(weeklyList, "weekly");
+    updateStatus();
+}
+
+
+
+
+// goals.html integration
+const totalList = document.querySelector("#total-list");
+
+if (totalList && goals) {
+    console.log("here?");
+    let userGoals = [];
+    userGoals = totalGoals.filter((goal) => {
+
+        // calculate time difference between due date and current date
+        let goalDate = new Date(goal.date).getTime();
+        let timeDiff = goalDate - curDate.getTime();
+
+        // return incomplete active goals that have not expired
+        return (goal.completed === false && goal.user == currentUser && timeDiff > 0)
+    });
+
+    if (userGoals.length == 0) {
+
+        // display default
+        let placeholder = document.createElement("p");
+        placeholder.innerText = `You haven't set any goals yet!`;
+        totalList.appendChild(placeholder);
+
+    } else {
+
+        // add to DOM
+        for (const goal of userGoals) {
+
+            // create a div with the goals
+            let goalDiv = document.createElement("div");
+            goalDiv.classList.add("goal");
+
+            let content = document.createElement("p");
+            content.innerText = goal.content;
+            goalDiv.appendChild(content);
+
+            let finishButton = document.createElement("button");
+            finishButton.classList.add("finish-goal");
+            finishButton.innerText = "Complete";
+            finishButton.addEventListener("click", () => {
+                goal.completed = true;
+                localStorage.setItem("goalList", JSON.stringify(totalGoals));
+                location.reload();
+            })
+            goalDiv.appendChild(finishButton);
+
+            let cancelButton = document.createElement("button");
+            cancelButton.classList.add("bttn-default", "bttn-delete");
+            cancelButton.addEventListener("click", () => {
+                totalGoals.splice(totalGoals.indexOf(goal), 1);
+                localStorage.setItem("goalList", JSON.stringify(totalGoals));
+                location.reload();
+            })
+            cancelButton.innerText = "Cancel";
+            goalDiv.appendChild(cancelButton);
+
+            totalList.appendChild(goalDiv);
+        }
+    }
+} else if (totalList) {
+    // display default
+    let placeholder = document.createElement("p");
+    placeholder.innerText = `You haven't set any goals yet!`;
+    totalList.appendChild(placeholder);
+}
+
+
+
 
