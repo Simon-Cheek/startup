@@ -160,8 +160,9 @@ if (dailyList) {
 const totalList = document.querySelector("#total-list");
 
 if (totalList && goals) {
-    console.log("here?");
+
     let userGoals = [];
+
     userGoals = totalGoals.filter((goal) => {
 
         // calculate time difference between due date and current date
@@ -215,7 +216,44 @@ if (totalList && goals) {
             totalList.appendChild(goalDiv);
         }
     }
+
+
+    // add expired goals to the expired tab
+    userGoals = totalGoals.filter((goal) => {
+
+        // calculate time difference between due date and current date
+        let goalDate = new Date(goal.date).getTime();
+        let timeDiff = goalDate - curDate.getTime();
+
+        // return incomplete active goals that have not expired
+        return ((timeDiff <= 0 || goal.completed == true) && goal.user == currentUser);
+    });
+
+    if (userGoals.length === 0) {
+
+        // display default
+        let placeholder = document.createElement("p");
+        placeholder.innerText = `You haven't set any goals yet!`;
+        const expiredList = document.querySelector("#expired-list");
+        expiredList.appendChild(placeholder);
+    } else {
+        // loop through and add to div
+        for (const goal of userGoals) {
+            const expiredList = document.querySelector("#expired-list");
+            const para = document.createElement("p");
+            para.innerText = goal.content;
+            if (goal.completed == true) {
+                para.classList.add("green");
+            } else {
+                para.classList.add("red");
+            }
+            expiredList.appendChild(para);
+        }
+    }
+
+
 } else if (totalList) {
+
     // display default
     let placeholder = document.createElement("p");
     placeholder.innerText = `You haven't set any goals yet!`;
