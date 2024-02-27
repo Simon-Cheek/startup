@@ -337,7 +337,7 @@ label {
     margin: center;
     border: 1px solid rgb(228, 236, 255);
     border-radius: 16px;
-    background-color: rgba(174, 196, 252, 0.85);
+    background-color: rgba(20, 60, 100, 0.85);
     animation-name: popup-fade;
     animation-duration: 1s;
     transform: translate(-50%, 0);
@@ -353,7 +353,20 @@ label {
     }
 
     to {
-        opacity: 100%;
+        opacity: 95%;
+    }
+}
+
+.disappear {
+    animation-name: vanish;
+    animation-duration: 1s;
+}
+
+@keyframes vanish {
+    from {}
+
+    to {
+        opacity: 0%;
     }
 }
 

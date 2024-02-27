@@ -16,10 +16,18 @@ const createPopUp = new Promise((res, rej) => {
             page.appendChild(newPopUp);
 
             setTimeout(() => {
-                newPopUp.remove();
+                newPopUp.classList.add("disappear");
             }, 4000)
 
-        }, 20000
+            setTimeout(() => {
+                newPopUp.style.display = "none";
+            }, 5000)
+
+            setTimeout(() => {
+                newPopUp.remove();
+            }, 6000)
+
+        }, 15000
     )
 })
 
