@@ -28,6 +28,8 @@ addFriend.addEventListener("submit", (e) => {
 
         if (userObj.friends.includes(friendUser)) {
             alert("Friend already added!");
+        } else if (friendUser == currentUser) {
+            alert("You cannot add yourself!");
         } else {
             userObj.friends.push(friendUser);
             localStorage.setItem(`user:${userName}`, JSON.stringify(userObj));
@@ -83,8 +85,13 @@ if (userInfo.friends.length == 0) {
         const removeButton = document.createElement("button");
         removeButton.classList.add("bttn-default", "bttn-delete", "bttn-small");
         removeButton.innerText = "Remove Friend";
+        removeButton.addEventListener("click", () => {
+            userInfo.friends.splice(userInfo.friends.indexOf(friend), 1);
+            localStorage.setItem(`user:${currentUser}`, JSON.stringify(userInfo));
+            location.reload();
+        });
 
-        // LATER: ADD EVENT LISTENER TO ACTUALLY REMOVE FRIEND
-
+        container.appendChild(removeButton);
+        friendList.appendChild(container);
     }
 }
