@@ -37,7 +37,7 @@ apiRouter.post('/goal/:name', (req, res) => {
 
 // adds a friend to a user
 apiRouter.post('/friend/:friendName', (req, res) => {
-    let currentUsername = req.body; // string "name"
+    let currentUsername = req.body.user; // string "name"
     let friendName = req.params.friendName;
     if (findUser(friendName)) {
         let currentUser = findUser(currentUsername);
@@ -50,12 +50,14 @@ apiRouter.post('/friend/:friendName', (req, res) => {
 });
 
 // adds a user to the array
-apiRouter.post('/:user', (req, res) => {
-    let user = req.body;
+apiRouter.post('/', (req, res) => {
+    let user = req.body.user;
 
     // parse out prospective username to make sure username isn't already in use
     let name = user.name;
     let existingUser = findUser(name);
+    console.log(name, existingUser, user);
+    console.log("LOOK HERE!!!");
 
 
     if (user.name && user.friends && user.goals && !existingUser) {
@@ -122,6 +124,8 @@ completed: false
 
 // search for user within array of users
 function findUser(name) {
+    console.log(users);
+    console.log(name);
     let user = users.find((u) => {
         return u.name == name;
     });
