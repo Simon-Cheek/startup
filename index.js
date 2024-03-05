@@ -21,6 +21,20 @@ apiRouter.get('/:name', (req, res) => {
     res.send(userName);
 });
 
+// adds a goal to a user
+apiRouter.post('/goal/:name', (req, res) => {
+    let name = req.params.name;
+    let userName = findUser(name);
+    if (userName) {
+        let goal = req.body;
+        userName.goals.push(goal);
+        res.send(1);
+    } else {
+        console.log('User doesn\'t exist!');
+        res.send(0);
+    }
+})
+
 
 // adds a user to the array
 apiRouter.post('/:user', (req, res) => {

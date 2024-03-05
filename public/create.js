@@ -42,7 +42,6 @@ createForm.addEventListener('submit', (e) => {
         }
 
         // create new Goal
-        console.log(goalDate);
         const newGoal = {
             user: currentUser,
             type: goalType.value,
