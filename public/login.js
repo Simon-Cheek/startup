@@ -11,7 +11,6 @@ async function login() {
         const user = await fetch(`/api/${userName.value}`);
         const userInfo = await user.text();
         if (!userInfo) {
-            console.log("USer doesnt exist!");
             const newUser = {
                 name: userName.value,
                 friends: [],
@@ -24,8 +23,6 @@ async function login() {
                 },
                 body: JSON.stringify({ user: newUser })
             });
-            const parsedUser = await createUser.json();
-            console.log(parsedUser);
         }
 
         // navigate to profile

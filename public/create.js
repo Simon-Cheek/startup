@@ -6,7 +6,7 @@ const createForm = document.querySelector("#create-goal");
 
 
 // handle form submissions and creates the goal
-createForm.addEventListener('submit', (e) => {
+createForm.addEventListener('submit', async (e) => {
 
     e.preventDefault();
     const goalContent = document.querySelector("#goal-content"); // text
@@ -43,17 +43,23 @@ createForm.addEventListener('submit', (e) => {
 
         // create new Goal
         const newGoal = {
-            user: currentUser,
             type: goalType.value,
             content: goalContent.value,
             date: goalDate,
             completed: false
         }
 
-        // add it to localStorage
-        const goalList = JSON.parse(localStorage.getItem("goalList"));
-        goalList.push(newGoal);
-        localStorage.setItem("goalList", JSON.stringify(goalList));
+        // add it to server
+        const createGoal = await fetch(`/api/goal/${currentUser}`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newGoal)
+        });
+        const response = await createGoal.text();
+        console.log(response);
+
 
 
         // redirect to profile page

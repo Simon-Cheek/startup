@@ -28,10 +28,10 @@ apiRouter.post('/goal/:name', (req, res) => {
     if (userName) {
         let goal = req.body;
         userName.goals.push(goal);
-        res.send(1);
+        res.send("Worked");
     } else {
         console.log('User doesn\'t exist!');
-        res.send(0);
+        res.send("Did not work!");
     }
 });
 
@@ -124,8 +124,6 @@ completed: false
 
 // search for user within array of users
 function findUser(name) {
-    console.log(users);
-    console.log(name);
     let user = users.find((u) => {
         return u.name == name;
     });
