@@ -9,7 +9,7 @@ app.use(express.static('public'));
 let apiRouter = express.Router();
 app.use('/api', apiRouter);
 
-
+// gets a list of all users
 apiRouter.get('/users/all', (req, res) => {
     res.send(users);
 })
@@ -33,8 +33,21 @@ apiRouter.post('/goal/:name', (req, res) => {
         console.log('User doesn\'t exist!');
         res.send(0);
     }
-})
+});
 
+// adds a friend to a user
+apiRouter.post('/friend/:friendName', (req, res) => {
+    let currentUsername = req.body; // string "name"
+    let friendName = req.params.friendName;
+    if (findUser(friendName)) {
+        let currentUser = findUser(currentUsername);
+        currentUser.friends.push(friendName);
+        res.send(currentUser);
+    } else {
+        console.log("Friend does not exist!");
+        res.send(0);
+    }
+});
 
 // adds a user to the array
 apiRouter.post('/:user', (req, res) => {
@@ -54,6 +67,24 @@ apiRouter.post('/:user', (req, res) => {
         console.log("Tried to create invalid user!");
         res.send([]);
     }
+});
+
+// deletes a goal from the user's array
+apiRouter.delete('/goal/:user', (req, res) => {
+    let goal = req.body;
+    let userName = req.params.user;
+    const user = findUser(userName);
+    user.splice(user.goals.indexOf(goal), 1);
+    res.send(user);
+});
+
+// deletes a friend from the user's array
+apiRouter.delete('/friend/:friendName', (req, res) => {
+    let friendName = req.params.friendName;
+    let currentUsername = req.body; // string "name"
+    let currentUser = findUser(currentUsername);
+    currentUser.friends.splice(currentUser.friends.indexOf(friendName), 1);
+    res.send(currentUser);
 })
 
 
