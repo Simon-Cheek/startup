@@ -8,14 +8,15 @@ if (!localStorage.getItem("username")) {
 // add event listener to adding friends
 const addFriend = document.querySelector("#add-form");
 
-addFriend.addEventListener("submit", (e) => {
+addFriend.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    // get friend and look for friend in localStorage
+    // get friend and look for friend in backend
     const newFriend = document.querySelector("#newfriend");
     const friendUser = newFriend.value;
     newFriend.value = "";
-    const friendInfo = localStorage.getItem(`user:${friendUser}`)
+    const friend = await fetch(`/api/${friendUser}`);
+    const friendInfo = await friend.text();
 
     // alert if no friend, else add to friend list
     if (!friendInfo) {
@@ -24,74 +25,87 @@ addFriend.addEventListener("submit", (e) => {
 
         // get current user and add friend to friendlist IF not already there
         const userName = localStorage.getItem("username");
-        const userObj = JSON.parse(localStorage.getItem(`user:${userName}`));
+        const fetchedUser = await fetch(`/api/${userName}`);
+        const userObj = await fetchedUser.json();
+
 
         if (userObj.friends.includes(friendUser)) {
             alert("Friend already added!");
-        } else if (friendUser == currentUser) {
+        } else if (friendUser == userName) {
             alert("You cannot add yourself!");
         } else {
-            userObj.friends.push(friendUser);
-            localStorage.setItem(`user:${userName}`, JSON.stringify(userObj));
+
+            // add friend to friendlist
+            const addFriend = await fetch(`/api/friend/${friendUser}`, {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify({ user: userName })
+            });
         }
 
-        console.log(localStorage.getItem(`user:${userName}`));
     }
 
     location.reload();
 })
 
 
+async function displayFriends() {
+    // display the friends
+    const friendList = document.querySelector(".friendlist")
+    const currentUser = localStorage.getItem("username");
+    const fetchedUser = await fetch(`/api/${currentUser}`);
+    const userInfo = await fetchedUser.json();
+    console.log(userInfo);
 
-// display the friends
-const friendList = document.querySelector(".friendlist")
-const currentUser = localStorage.getItem("username");
-const userInfo = JSON.parse(localStorage.getItem(`user:${currentUser}`));
+    // placeholder for zero friends
+    if (userInfo.friends.length == 0) {
 
-// placeholder for zero friends
-if (userInfo.friends.length == 0) {
+        const placeholder = document.createElement("div");
+        placeholder.classList.add("friend");
 
-    const placeholder = document.createElement("div");
-    placeholder.classList.add("friend");
+        const words = document.createElement("p");
+        words.innerText = 'No friends added yet!';
+        placeholder.appendChild(words);
+        friendList.appendChild(placeholder);
 
-    const words = document.createElement("p");
-    words.innerText = 'No friends added yet!';
-    placeholder.appendChild(words);
-    friendList.appendChild(placeholder);
+    } else {
 
-} else {
+        // add to DOM
+        for (const friend of userInfo.friends) {
 
-    // add to DOM
-    for (const friend of userInfo.friends) {
+            const container = document.createElement("div");
+            container.classList.add("friend");
 
-        const container = document.createElement("div");
-        container.classList.add("friend");
+            const userText = document.createElement("p");
+            userText.innerText = friend;
+            container.appendChild(userText);
 
-        const userText = document.createElement("p");
-        userText.innerText = friend;
-        container.appendChild(userText);
+            // add the view profile button
+            const link = document.createElement("a");
+            link.href = "friend.html";
 
-        // add the view profile button
-        const link = document.createElement("a");
-        link.href = "friend.html";
+            const viewButton = document.createElement("button");
+            viewButton.classList.add("bttn-default", "bttn-small");
+            viewButton.innerText = "View Profile";
+            link.appendChild(viewButton);
+            container.appendChild(link);
 
-        const viewButton = document.createElement("button");
-        viewButton.classList.add("bttn-default", "bttn-small");
-        viewButton.innerText = "View Profile";
-        link.appendChild(viewButton);
-        container.appendChild(link);
+            // add the remove friend button
+            const removeButton = document.createElement("button");
+            removeButton.classList.add("bttn-default", "bttn-delete", "bttn-small");
+            removeButton.innerText = "Remove Friend";
+            removeButton.addEventListener("click", () => {
+                userInfo.friends.splice(userInfo.friends.indexOf(friend), 1);
+                localStorage.setItem(`user:${currentUser}`, JSON.stringify(userInfo));
+                location.reload();
+            });
 
-        // add the remove friend button
-        const removeButton = document.createElement("button");
-        removeButton.classList.add("bttn-default", "bttn-delete", "bttn-small");
-        removeButton.innerText = "Remove Friend";
-        removeButton.addEventListener("click", () => {
-            userInfo.friends.splice(userInfo.friends.indexOf(friend), 1);
-            localStorage.setItem(`user:${currentUser}`, JSON.stringify(userInfo));
-            location.reload();
-        });
-
-        container.appendChild(removeButton);
-        friendList.appendChild(container);
+            container.appendChild(removeButton);
+            friendList.appendChild(container);
+        }
     }
 }
+
+displayFriends();
