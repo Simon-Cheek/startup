@@ -87,6 +87,15 @@
 
 
     <footer>
+        <div id="stock-container">
+            <div class="stock-section">
+                <p class="price" id="meta"></p>
+                <p class="price" id="aapl"></p>
+                <p class="price" id="amzn"></p>
+                <p class="price" id="nflx"></p>
+                <p class="price" id="goog"></p>
+            </div>
+        </div>
         <div class="credits">
             <p>Created by <a href="https://www.simoncheek.com" target="_blank">Simon Cheek</a><span
                     class="credit-dot">&#x2022;</span></p>
@@ -112,6 +121,7 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
     <script src="login.js"></script>
+    <script src="stocks.js"></script>
     <script src="socket.js"></script>
     <script>alert("NOTE: The Register feature is not currently active. To test user features, login with any password and an account will automatically be generated. This can be done with multiple users to simulate friend data sharing.")</script>
 </body>

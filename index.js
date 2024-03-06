@@ -3,8 +3,20 @@ const app = express();
 
 let createId = require('uniqid');
 
-app.use(express.json());
+// finnhub setup
+const finnhub = require('finnhub');
+const api_key = finnhub.ApiClient.instance.authentications['api_key'];
+api_key.apiKey = "cnjuh31r01qvd1hlpob0cnjuh31r01qvd1hlpobg";
+const finnhubClient = new finnhub.DefaultApi();
 
+// finnhubClient.quote("AAPL", (error, data, response) => {
+//     console.log(data.c)
+// });
+
+
+
+// middleware
+app.use(express.json());
 app.use(express.static('public'));
 
 // routes api information / requests
@@ -21,6 +33,14 @@ apiRouter.get('/:name', (req, res) => {
     let name = req.params.name;
     let user = findUser(name);
     res.send(user);
+});
+
+// gets stock price from finnhub
+apiRouter.get('/stock/:company', (req, res) => {
+    const company = req.params.company;
+    finnhubClient.quote(`${company}`, (error, data, response) => {
+        res.send(data.c.toString());
+    });
 });
 
 // adds a goal to a user

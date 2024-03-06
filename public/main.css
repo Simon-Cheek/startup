@@ -157,6 +157,36 @@ label {
     margin-top: 1.2em;
 }
 
+.price {
+    margin-left: 1em;
+    margin-right: 1em;
+    font-size: 10px;
+}
+
+#stock-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stock-section {
+    background-color: rgba(228, 236, 255, 0.05);
+    border: 1px rgb(228, 236, 255) solid;
+    border-radius: 8px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1em;
+    margin-left: 2em;
+    margin-right: 2em;
+    padding: 0em 1em;
+}
+
+.stock-section p {
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
 /* PROFILE PAGE STYLING */
 
 .main-display {
