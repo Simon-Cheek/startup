@@ -62,3 +62,11 @@ Welcome to my startup, *Gollab*! This software stands as an oppurtunity for prof
 - **Javascript Support for Web Socketing**: Success! Friend addition pop ups appear every ~15 seconds on every screen
 - **Javascript Support for App Interaction Logic**: Success! (Almost) full CRUD functionality for friends and goal data. Update (U) coming soon!
 - **Note**: Future features to be added are goal due dates displaying with the goal as well as update functionality for goals
+
+### Service Deliverable:
+
+- **Create an HTTP Service Using Node.JS and Express**: Success! Npm package and express installed and utilized!
+- **Frontend served through static middleware**: Success! Used static services to serve files in public directory.
+- **Frontend calls 3rd party Endpoints**: The third party API that I used is on the BACKEND (Index.js) for security reasons. I use an API key to access. The 3rd Party API provides stock prices for FAANG Companies (on the Front/Login page). I created my own endpoint to host the API and then call it from my front end. (Finnhub API)
+- **Backend Provides Service Endpoints**: Success! Full CRUD Functionality is given through custom api endpoints (GET, PATCH, DELETE, POST)
+- **Your Frontend calls your Service Endpoints**: Success! Fetch is all over the place, sometimes using async and sometimes using .then
