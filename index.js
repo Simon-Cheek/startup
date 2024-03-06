@@ -17,8 +17,8 @@ apiRouter.get('/users/all', (req, res) => {
 // gets specifc user
 apiRouter.get('/:name', (req, res) => {
     let name = req.params.name;
-    let userName = findUser(name);
-    res.send(userName);
+    let user = findUser(name);
+    res.send(user);
 });
 
 // adds a goal to a user
@@ -83,7 +83,7 @@ apiRouter.delete('/goal/:user', (req, res) => {
 // deletes a friend from the user's array
 apiRouter.delete('/friend/:friendName', (req, res) => {
     let friendName = req.params.friendName;
-    let currentUsername = req.body; // string "name"
+    let currentUsername = req.body.user; // string "name"
     let currentUser = findUser(currentUsername);
     currentUser.friends.splice(currentUser.friends.indexOf(friendName), 1);
     res.send(currentUser);

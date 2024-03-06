@@ -57,7 +57,7 @@ async function displayFriends() {
     const currentUser = localStorage.getItem("username");
     const fetchedUser = await fetch(`/api/${currentUser}`);
     const userInfo = await fetchedUser.json();
-    console.log(userInfo);
+
 
     // placeholder for zero friends
     if (userInfo.friends.length == 0) {
@@ -96,9 +96,15 @@ async function displayFriends() {
             const removeButton = document.createElement("button");
             removeButton.classList.add("bttn-default", "bttn-delete", "bttn-small");
             removeButton.innerText = "Remove Friend";
-            removeButton.addEventListener("click", () => {
-                userInfo.friends.splice(userInfo.friends.indexOf(friend), 1);
-                localStorage.setItem(`user:${currentUser}`, JSON.stringify(userInfo));
+            removeButton.addEventListener("click", async () => {
+                // friend is the variable to use
+                const removeFriend = await fetch(`/api/friend/${friend}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({ user: currentUser })
+                });
                 location.reload();
             });
 

@@ -26,14 +26,6 @@ createForm.addEventListener('submit', async (e) => {
         alert("Please choose a date in the future!");
     } else {
 
-        // create the goal here and add to local Storage
-        if (!localStorage.getItem("goalList")) {
-
-            // create goalList array if not already in existance, store as STRING
-            const goalArray = []
-            localStorage.setItem("goalList", JSON.stringify(goalArray));
-        }
-
         // assign default username if not existant (temporary)
         let currentUser = localStorage.getItem("username");
         if (!currentUser) {
@@ -58,7 +50,6 @@ createForm.addEventListener('submit', async (e) => {
             body: JSON.stringify(newGoal)
         });
         const response = await createGoal.text();
-        console.log(response);
 
 
 
