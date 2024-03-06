@@ -72,8 +72,18 @@ apiRouter.post('/', (req, res) => {
     }
 });
 
+// edits a goal's completion status
+apiRouter.patch('/:user/:id', (req, res) => {
+    const userName = req.params.user;
+    const user = findUser(userName);
+    const id = req.params.id;
+    const goal = user.goals.find((g) => g.id == id);
+    goal.completed = true;
+    res.send(user);
+});
+
 // deletes a goal from the user's array
-apiRouter.delete('/:user/:id', (req, res) => {
+apiRouter.delete('/remove/:user/:id', (req, res) => {
     const userName = req.params.user;
     const user = findUser(userName);
     const id = req.params.id;
@@ -103,7 +113,7 @@ app.listen(3000, () => {
 
 // Mock Database Information
 
-let users = [{ name: "test", friends: [], goals: [{}] }];
+let users = [{ name: "username", friends: [], goals: [{}] }];
 
 /* 
 

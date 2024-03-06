@@ -47,9 +47,8 @@ function injectGoalHtml(goalList, area) {
         let finishButton = document.createElement("button");
         finishButton.classList.add("finish-goal");
         finishButton.innerText = "Complete";
-        finishButton.addEventListener("click", () => {
-            goal.completed = true;
-            localStorage.setItem("goalList", JSON.stringify(totalGoals));
+        finishButton.addEventListener("click", async () => {
+            const completeGoal = await fetch(`/api/${currentUser}/${goal.id}`, { method: 'PATCH' });
             location.reload();
         })
         goalDiv.appendChild(finishButton);
@@ -57,8 +56,9 @@ function injectGoalHtml(goalList, area) {
         let cancelButton = document.createElement("button");
         cancelButton.classList.add("bttn-default", "bttn-delete");
         cancelButton.addEventListener("click", async () => {
-            console.log(goal);
-            const deleteGoal = await fetch(`/api/${currentUser}/${goal.id}`, { method: 'DELETE' });
+
+            // delete the goal
+            const deleteGoal = await fetch(`/api/remove/${currentUser}/${goal.id}`, { method: 'DELETE' });
             location.reload();
         })
         cancelButton.innerText = "Cancel";
@@ -167,7 +167,7 @@ async function updateGoalHTML() {
 
         let userGoals = [];
 
-        userGoals = totalGoals.filter((goal) => {
+        userGoals = userObj.goals.filter((goal) => {
 
             // calculate time difference between due date and current date
             let goalDate = new Date(goal.date).getTime();
