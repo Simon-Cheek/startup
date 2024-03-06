@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 
+let createId = require('uniqid');
+
 app.use(express.json());
 
 app.use(express.static('public'));
@@ -27,6 +29,7 @@ apiRouter.post('/goal/:name', (req, res) => {
     let userName = findUser(name);
     if (userName) {
         let goal = req.body;
+        goal["id"] = createId();
         userName.goals.push(goal);
         res.send("Worked");
     } else {
@@ -56,8 +59,6 @@ apiRouter.post('/', (req, res) => {
     // parse out prospective username to make sure username isn't already in use
     let name = user.name;
     let existingUser = findUser(name);
-    console.log(name, existingUser, user);
-    console.log("LOOK HERE!!!");
 
 
     if (user.name && user.friends && user.goals && !existingUser) {
@@ -87,7 +88,7 @@ apiRouter.delete('/friend/:friendName', (req, res) => {
     let currentUser = findUser(currentUsername);
     currentUser.friends.splice(currentUser.friends.indexOf(friendName), 1);
     res.send(currentUser);
-})
+});
 
 
 

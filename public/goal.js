@@ -9,14 +9,23 @@ if (localStorage.getItem("username")) {
 // place the goals in the list-display
 const dailyList = document.querySelector("#daily-list-js");
 const weeklyList = document.querySelector("#weekly-list-js")
-const goals = localStorage.getItem("goalList")
-const totalGoals = JSON.parse(goals);
+
 
 // check and get user
 let currentUser = localStorage.getItem("username");
 if (!currentUser) {
     currentUser = "username";
 }
+
+// initialize userObj
+let userObj = {};
+
+// fetches user info and makes available
+async function getUserInfo() {
+    const fetchedUser = await fetch(`/api/${currentUser}`);
+    userObj = await fetchedUser.json(); // userObj.goals = array
+}
+
 
 // fetch today's date
 const curDate = new Date();
@@ -47,10 +56,16 @@ function injectGoalHtml(goalList, area) {
 
         let cancelButton = document.createElement("button");
         cancelButton.classList.add("bttn-default", "bttn-delete");
-        cancelButton.addEventListener("click", () => {
-            totalGoals.splice(totalGoals.indexOf(goal), 1);
-            localStorage.setItem("goalList", JSON.stringify(totalGoals));
-            location.reload();
+        cancelButton.addEventListener("click", async () => {
+            console.log(goal);
+            const deleteGoal = await fetch(`/api/goal/${currentUser}`, {
+                method: 'DELETE',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: { goal }
+            });
+            // location.reload();
         })
         cancelButton.innerText = "Cancel";
         goalDiv.appendChild(cancelButton);
@@ -62,20 +77,19 @@ function injectGoalHtml(goalList, area) {
 
 
 // Abstract Function for inserting Goals into a DIV
-function inputGoals(goalType, typeStr) {
+async function inputGoals(goalType, typeStr) {
 
-    if (goals) {
+    if (userObj.goals) {
 
-        // add Goals to daily list that match current user
-        // GOALS: user, type, content, date
+        console.log("we here");
 
         // filter goals depending on status, daily goals due today, weekly goals due within a week
         let userGoals = [];
         if (typeStr == "daily") {
-            userGoals = totalGoals.filter((goal) => (goal.user == currentUser) && (goal.type == "daily") && (goal.completed === false) && (new Date(goal.date).getDate() == curDate.getDate()) && (new Date(goal.date).getMonth() == curDate.getMonth()));
+            userGoals = userObj.goals.filter((goal) => (goal.type == "daily") && (goal.completed === false) && (new Date(goal.date).getDate() == curDate.getDate()) && (new Date(goal.date).getMonth() == curDate.getMonth()));
         } else {
-            userGoals = totalGoals.filter((goal) => {
-                if (goal.user != currentUser || goal.type != "weekly" || goal.completed === true) {
+            userGoals = userObj.goals.filter((goal) => {
+                if (goal.type != "weekly" || goal.completed === true) {
                     return false;
                 }
 
@@ -112,19 +126,16 @@ function inputGoals(goalType, typeStr) {
 
 
 // updates the goal count for each category on profile page
-function updateStatus() {
+async function updateStatus() {
 
     // count active, completed, and expired
     let activeCount = 0;
     let completedCount = 0;
     let expiredCount = 0;
 
-    if (goals) {
+    if (userObj.goals) {
 
-        // obtain current user's goals
-        const allUserGoals = totalGoals.filter((goal) => goal.user == currentUser);
-
-        for (const goal of allUserGoals) {
+        for (const goal of userObj.goals) {
 
             // calculate time difference between due date and current date
             let goalDate = new Date(goal.date).getTime();
@@ -153,96 +164,103 @@ function updateStatus() {
 }
 
 
-// for profile.html
-
-if (dailyList) {
-    inputGoals(dailyList, "daily");
-    inputGoals(weeklyList, "weekly");
-    updateStatus();
-}
 
 
+async function updateGoalHTML() {
+    // goals.html integration
+    const totalList = document.querySelector("#total-list");
+
+    if (totalList && userObj.goals) {
+
+        let userGoals = [];
+
+        userGoals = totalGoals.filter((goal) => {
+
+            // calculate time difference between due date and current date
+            let goalDate = new Date(goal.date).getTime();
+            let timeDiff = goalDate - curDate.getTime();
+
+            // return incomplete active goals that have not expired
+            return (goal.completed === false && timeDiff > 0)
+        });
+
+        if (userGoals.length == 0) {
+
+            // display default
+            let placeholder = document.createElement("p");
+            placeholder.innerText = `You haven't set any goals yet!`;
+            totalList.appendChild(placeholder);
+
+        } else {
+
+            // add to DOM
+            injectGoalHtml(userGoals, totalList);
+        }
 
 
-// goals.html integration
-const totalList = document.querySelector("#total-list");
+        // add expired goals to the expired tab
+        userGoals = userObj.goals.filter((goal) => {
 
-if (totalList && goals) {
+            // calculate time difference between due date and current date
+            let goalDate = new Date(goal.date).getTime();
+            let timeDiff = goalDate - curDate.getTime();
 
-    let userGoals = [];
+            // return incomplete active goals that have not expired
+            return (timeDiff <= 0 || goal.completed == true);
+        });
 
-    userGoals = totalGoals.filter((goal) => {
+        if (userGoals.length === 0) {
 
-        // calculate time difference between due date and current date
-        let goalDate = new Date(goal.date).getTime();
-        let timeDiff = goalDate - curDate.getTime();
+            // display default
+            let placeholder = document.createElement("p");
+            placeholder.innerText = `You haven't finished any goals yet!`;
+            const expiredList = document.querySelector("#expired-list");
+            expiredList.appendChild(placeholder);
+        } else {
+            // loop through and add to div
+            for (const goal of userGoals) {
+                const expiredList = document.querySelector("#expired-list");
+                const para = document.createElement("p");
+                para.innerText = goal.content;
+                if (goal.completed == true) {
+                    para.classList.add("green");
+                } else {
+                    para.classList.add("red");
+                }
+                expiredList.appendChild(para);
+            }
+        }
 
-        // return incomplete active goals that have not expired
-        return (goal.completed === false && goal.user == currentUser && timeDiff > 0)
-    });
 
-    if (userGoals.length == 0) {
+    } else if (totalList) {
 
         // display default
-        let placeholder = document.createElement("p");
+        const placeholder = document.createElement("p");
         placeholder.innerText = `You haven't set any goals yet!`;
         totalList.appendChild(placeholder);
 
-    } else {
-
-        // add to DOM
-        injectGoalHtml(userGoals, totalList);
-    }
-
-
-    // add expired goals to the expired tab
-    userGoals = totalGoals.filter((goal) => {
-
-        // calculate time difference between due date and current date
-        let goalDate = new Date(goal.date).getTime();
-        let timeDiff = goalDate - curDate.getTime();
-
-        // return incomplete active goals that have not expired
-        return ((timeDiff <= 0 || goal.completed == true) && goal.user == currentUser);
-    });
-
-    if (userGoals.length === 0) {
-        console.log("reached!");
-
-        // display default
-        let placeholder = document.createElement("p");
-        placeholder.innerText = `You haven't finished any goals yet!`;
         const expiredList = document.querySelector("#expired-list");
-        expiredList.appendChild(placeholder);
-    } else {
-        // loop through and add to div
-        for (const goal of userGoals) {
-            const expiredList = document.querySelector("#expired-list");
-            const para = document.createElement("p");
-            para.innerText = goal.content;
-            if (goal.completed == true) {
-                para.classList.add("green");
-            } else {
-                para.classList.add("red");
-            }
-            expiredList.appendChild(para);
-        }
+        const expiredPlaceholder = document.createElement("p");
+        expiredPlaceholder.innerText = `You haven't finished any goals yet!`
+        expiredList.appendChild(expiredPlaceholder);
     }
 
 
-} else if (totalList) {
-
-    // display default
-    const placeholder = document.createElement("p");
-    placeholder.innerText = `You haven't set any goals yet!`;
-    totalList.appendChild(placeholder);
-
-    const expiredList = document.querySelector("#expired-list");
-    const expiredPlaceholder = document.createElement("p");
-    expiredPlaceholder.innerText = `You haven't finished any goals yet!`
-    expiredList.appendChild(expiredPlaceholder);
 }
 
+
+async function main() {
+    await getUserInfo();
+
+    if (dailyList) {
+        inputGoals(dailyList, "daily");
+        inputGoals(weeklyList, "weekly");
+        updateStatus();
+    }
+    await updateGoalHTML();
+}
+
+main();
 
 
 
