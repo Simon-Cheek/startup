@@ -121,6 +121,10 @@ apiRouter.delete('/friend/:friendName', (req, res) => {
     res.send(currentUser);
 });
 
+// default path if unknown
+app.use((req, res) => {
+    res.sendFile('index.html', { root: 'public' });
+});
 
 
 
