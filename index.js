@@ -73,11 +73,12 @@ apiRouter.post('/', (req, res) => {
 });
 
 // deletes a goal from the user's array
-apiRouter.delete('/goal/:user', (req, res) => {
-    let goal = req.body;
-    let userName = req.params.user;
+apiRouter.delete('/:user/:id', (req, res) => {
+    const userName = req.params.user;
     const user = findUser(userName);
-    user.splice(user.goals.indexOf(goal), 1);
+    const id = req.params.id;
+    const goal = user.goals.find((g) => g.id == id);
+    user.goals.splice(user.goals.indexOf(goal), 1);
     res.send(user);
 });
 

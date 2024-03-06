@@ -58,14 +58,8 @@ function injectGoalHtml(goalList, area) {
         cancelButton.classList.add("bttn-default", "bttn-delete");
         cancelButton.addEventListener("click", async () => {
             console.log(goal);
-            const deleteGoal = await fetch(`/api/goal/${currentUser}`, {
-                method: 'DELETE',
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: { goal }
-            });
-            // location.reload();
+            const deleteGoal = await fetch(`/api/${currentUser}/${goal.id}`, { method: 'DELETE' });
+            location.reload();
         })
         cancelButton.innerText = "Cancel";
         goalDiv.appendChild(cancelButton);
@@ -81,7 +75,6 @@ async function inputGoals(goalType, typeStr) {
 
     if (userObj.goals) {
 
-        console.log("we here");
 
         // filter goals depending on status, daily goals due today, weekly goals due within a week
         let userGoals = [];
