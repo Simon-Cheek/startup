@@ -1,5 +1,7 @@
 const express = require('express');
 const DB = require('./database.js');
+const cookieParser = require('cookie-parser');
+const bcrypt = require('bcrypt');
 const app = express();
 
 let createId = require('uniqid');
@@ -11,14 +13,11 @@ const api_key = finnhub.ApiClient.instance.authentications['api_key'];
 api_key.apiKey = key.apiKey;
 const finnhubClient = new finnhub.DefaultApi();
 
-// finnhubClient.quote("AAPL", (error, data, response) => {
-//     console.log(data.c)
-// });
-
 
 
 // middleware
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.static('public'));
 
 // routes api information / requests
@@ -43,6 +42,52 @@ apiRouter.get('/stock/:company', (req, res) => {
     finnhubClient.quote(`${company}`, (error, data, response) => {
         res.send(data.c.toString());
     });
+});
+
+// Verifies an Auth Token
+apiRouter.get('/user/me', async (req, res) => {
+    authToken = req.cookies['token'];
+    const user = await DB.findUserWithToken(authToken);
+    if (user) {
+        res.send({ userName: user.userName });
+        return;
+    }
+    res.status(401).send({ msg: 'Unauthorized' });
+});
+
+// creates a user
+apiRouter.post('/auth/create', async (req, res) => {
+
+    // makes sure user doesn't already exist
+    if (await DB.getUser(req.body.userName)) {
+        res.status(409).send({ msg: 'Existing user' });
+    } else {
+
+        // creates the user
+        const user = await DB.createUser(req.body.userName, req.body.password);
+
+        // creates cookie
+        setAuthCookie(res, user.token);
+
+        res.send({
+            id: user._id,
+        });
+    }
+});
+
+// authenticates a user
+apiRouter.post('/auth/login', async (req, res) => {
+    const user = await getUser(req.body.userName);
+
+    // if user, attempts login, if not, don't
+    if (user) {
+        if (await bcrypt.compare(req.body.password, user.password)) {
+            DB.setAuthCookie(res, user.token);
+            res.send({ id: user._id });
+            return;
+        }
+    }
+    res.status(401).send({ msg: 'Unauthorized' });
 });
 
 // adds a goal to a user
