@@ -1,12 +1,14 @@
 const express = require('express');
+const DB = require('./database.js');
 const app = express();
 
 let createId = require('uniqid');
 
 // finnhub setup
 const finnhub = require('finnhub');
+const key = require('./finnConfig.json');
 const api_key = finnhub.ApiClient.instance.authentications['api_key'];
-api_key.apiKey = "cnjuh31r01qvd1hlpob0cnjuh31r01qvd1hlpobg";
+api_key.apiKey = key.apiKey;
 const finnhubClient = new finnhub.DefaultApi();
 
 // finnhubClient.quote("AAPL", (error, data, response) => {
