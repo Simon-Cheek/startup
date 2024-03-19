@@ -70,3 +70,11 @@ Welcome to my startup, *Gollab*! This software stands as an oppurtunity for prof
 - **Frontend calls 3rd party Endpoints**: The third party API that I used is on the BACKEND (Index.js) for security reasons. I use an API key to access. The 3rd Party API provides stock prices for FAANG Companies (on the Front/Login page). I created my own endpoint to host the API and then call it from my front end. (Finnhub API)
 - **Backend Provides Service Endpoints**: Success! Full CRUD Functionality is given through custom api endpoints (GET, PATCH, DELETE, POST)
 - **Your Frontend calls your Service Endpoints**: Success! Fetch is all over the place, sometimes using async and sometimes using .then
+
+### Login Deliverable:
+
+- **Supports New User Registration**: Success! Register.JS handles logic as well as backend/database!
+- **Supports Existing User Authentication**: Success! Users log in on main page and can log out on their profile!
+- **Stores App Data in MongoDB**: Utilizes MongoDB Atlas to store user and goal data in objects
+- **Stores Authentication Data (Credentials) in MongoDB**: Success! Stores user info and encrypted passwords in DB
+- **Restricts App Functionality Based upon Login**: Success! Forces users to login to view any page and interact with app
