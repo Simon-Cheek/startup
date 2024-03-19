@@ -8,8 +8,7 @@ async function verify() {
     }
 }
 
-verify();
-
+setTimeout(verify, 500);
 
 
 // async function login() {

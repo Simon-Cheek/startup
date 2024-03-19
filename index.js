@@ -83,7 +83,7 @@ apiRouter.post('/auth/create', async (req, res) => {
 
 // authenticates a user
 apiRouter.post('/auth/login', async (req, res) => {
-    const user = await getUser(req.body.userName);
+    const user = await DB.getUser(req.body.userName);
 
     // if user, attempts login, if not, don't
     if (user) {
@@ -145,6 +145,12 @@ apiRouter.patch('/:user/:id', async (req, res) => {
     const id = req.params.id;
     const updatedGoals = await DB.completeGoal(userName, id);
     res.send(updatedGoals);
+});
+
+// logs current user out
+apiRouter.delete('/auth/logout', (req, res) => {
+    res.clearCookie('token');
+    res.status(204).send();
 });
 
 // deletes a goal from the user's array
