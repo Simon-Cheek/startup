@@ -153,9 +153,6 @@ apiRouter.delete('/remove/:user/:id', async (req, res) => {
     const id = req.params.id;
     const updatedUser = await DB.deleteGoal(userName, id);
     res.send(updatedUser);
-    // const goal = user.goals.find((g) => g.id == id);
-    // user.goals.splice(user.goals.indexOf(goal), 1);
-    // res.send(user);
 });
 
 // deletes a friend from the user's array
