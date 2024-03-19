@@ -7,8 +7,7 @@ const uuid = require('uuid');
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
-const db = client.db('startup').collection('users');
-
+const DB = client.db('startup').collection('users');
 
 // Database interaction functions
 
@@ -16,7 +15,7 @@ const db = client.db('startup').collection('users');
 
 // Gets the user given specified username
 function getUser(userName) {
-  return db.findOne({ userName: userName });
+  return DB.findOne({ userName: userName });
 }
 
 
@@ -33,7 +32,7 @@ async function createUser(userName, password) {
     goals: []
   };
 
-  await db.insertOne(newUser);
+  await DB.insertOne(newUser);
   return newUser;
 }
 
@@ -48,7 +47,7 @@ function setAuthCookie(res, authToken) {
 
 // Searches for user with the authtoken
 async function findUserWithToken(authToken) {
-  const user = await db.findOne({ token: authToken });
+  const user = await DB.findOne({ token: authToken });
   return user;
 }
 

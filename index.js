@@ -67,7 +67,7 @@ apiRouter.post('/auth/create', async (req, res) => {
         const user = await DB.createUser(req.body.userName, req.body.password);
 
         // creates cookie
-        setAuthCookie(res, user.token);
+        DB.setAuthCookie(res, user.token);
 
         res.send({
             id: user._id,
@@ -177,7 +177,7 @@ app.use((req, res) => {
 
 
 app.listen(4000, () => {
-    console.log("Listening on port 3000!");
+    console.log("Listening on port 4000!");
 });
 
 
