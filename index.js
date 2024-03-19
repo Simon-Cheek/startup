@@ -32,9 +32,14 @@ apiRouter.get('/users/all', async (req, res) => {
 
 // gets specifc user
 apiRouter.get('/:name', async (req, res) => {
-    let name = req.params.name;
-    const { _id, userName, friends, goals } = await DB.getUser(name);
-    res.send({ _id, userName, friends, goals });
+    try {
+        let name = req.params.name;
+        const { _id, userName, friends, goals } = await DB.getUser(name);
+        res.send({ _id, userName, friends, goals });
+    } catch (error) {
+        res.send(error);
+    }
+
 });
 
 // gets stock price from finnhub
@@ -95,6 +100,7 @@ apiRouter.post('/auth/login', async (req, res) => {
 apiRouter.post('/goal/:name', async (req, res) => {
     let name = req.params.name;
     let goal = req.body;
+    goal.id = createId();
     const updatedGoal = await DB.addGoal(name, goal);
     res.send(updatedGoal);
 });
@@ -134,13 +140,11 @@ apiRouter.post('/', (req, res) => {
 });
 
 // edits a goal's completion status
-apiRouter.patch('/:user/:id', (req, res) => {
+apiRouter.patch('/:user/:id', async (req, res) => {
     const userName = req.params.user;
-    const user = findUser(userName);
     const id = req.params.id;
-    const goal = user.goals.find((g) => g.id == id);
-    goal.completed = true;
-    res.send(user);
+    const updatedGoal = await DB.completeGoal(userName, id);
+    res.send(updatedGoal);
 });
 
 // deletes a goal from the user's array

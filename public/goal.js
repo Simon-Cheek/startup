@@ -13,9 +13,6 @@ const weeklyList = document.querySelector("#weekly-list-js")
 
 // check and get user
 let currentUser = localStorage.getItem("username");
-if (!currentUser) {
-    currentUser = "username";
-}
 
 // initialize userObj
 let userObj = {};
@@ -23,11 +20,8 @@ let userObj = {};
 // fetches user info and makes available
 async function getUserInfo() {
     const fetchedUser = await fetch(`/api/${currentUser}`);
-    console.log(fetchedUser);
     userObj = await fetchedUser.json(); // userObj.goals = array
-    console.log(userObj);
 }
-
 
 // fetch today's date
 const curDate = new Date();

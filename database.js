@@ -76,6 +76,24 @@ async function addGoal(userName, goal) {
 };
 
 
+// Finds a goal and completes it
+async function completeGoal(userName, goalID) {
+  const foundUser = await getUser(userName);
+  console.log(foundUser);
+  const foundUserID = foundUser._id;
+  const foundGoals = foundUser.goals;
+  console.log(foundGoals);
+  console.log(goalID);
+  const goalToComplete = foundGoals.find((g) => g.id == goalID);
+  goalToComplete.completed = true;
+
+  // set the goals array back into the database
+  const updatedGoal = await DB.updateOne({ _id: foundUserID }, { $set: { goals: foundGoals } });
+
+  return updatedGoal;
+};
+
+
 
 module.exports = {
   getAll,
@@ -83,5 +101,6 @@ module.exports = {
   createUser,
   setAuthCookie,
   findUserWithToken,
-  addGoal
+  addGoal,
+  completeGoal
 };
