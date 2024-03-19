@@ -33,9 +33,8 @@ apiRouter.get('/users/all', async (req, res) => {
 // gets specifc user
 apiRouter.get('/:name', async (req, res) => {
     let name = req.params.name;
-    const { userName, friends, goals } = await DB.getUser(name);
-    console.log({ userName, friends, goals });
-    res.send({ userName, friends, goals });
+    const { _id, userName, friends, goals } = await DB.getUser(name);
+    res.send({ _id, userName, friends, goals });
 });
 
 // gets stock price from finnhub
@@ -93,18 +92,11 @@ apiRouter.post('/auth/login', async (req, res) => {
 });
 
 // adds a goal to a user
-apiRouter.post('/goal/:name', (req, res) => {
+apiRouter.post('/goal/:name', async (req, res) => {
     let name = req.params.name;
-    let userName = findUser(name);
-    if (userName) {
-        let goal = req.body;
-        goal["id"] = createId();
-        userName.goals.push(goal);
-        res.send("Worked");
-    } else {
-        console.log('User doesn\'t exist!');
-        res.send("Did not work!");
-    }
+    let goal = req.body;
+    const updatedGoal = await DB.addGoal(name, goal);
+    res.send(updatedGoal);
 });
 
 // adds a friend to a user

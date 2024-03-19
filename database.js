@@ -14,14 +14,14 @@ const DB = client.db('startup').collection('users');
 
 
 // Gets the user given specified username
-function getUser(userName) {
-  return DB.findOne({ userName: userName });
+async function getUser(userName) {
+  return await DB.findOne({ userName: userName });
 }
 
+// Gets all users
 async function getAll() {
   try {
     const item = await DB.find().toArray();
-    console.log(item);
     return item;
   } catch (error) {
     console.log("HELP", error);
@@ -61,11 +61,27 @@ async function findUserWithToken(authToken) {
   return user;
 }
 
+// Adds a goal to a user's array
+async function addGoal(userName, goal) {
+
+  // Find the user document based on the userName
+  const filter = { userName: userName };
+  const update = { $push: { goals: goal } };
+  const options = { returnOriginal: false };
+
+  // Perform the update operation
+  const result = await DB.findOneAndUpdate(filter, update, options);
+
+  return result.value;
+};
+
+
 
 module.exports = {
   getAll,
   getUser,
   createUser,
   setAuthCookie,
-  findUserWithToken
+  findUserWithToken,
+  addGoal
 };

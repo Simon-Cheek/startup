@@ -26,12 +26,7 @@ createForm.addEventListener('submit', async (e) => {
         alert("Please choose a date in the future!");
     } else {
 
-        // assign default username if not existant (temporary)
         let currentUser = localStorage.getItem("username");
-        if (!currentUser) {
-            localStorage.setItem("username", "username");
-            currentUser = "username";
-        }
 
         // create new Goal
         const newGoal = {
