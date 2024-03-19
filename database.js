@@ -75,6 +75,26 @@ async function addGoal(userName, goal) {
   return result.value;
 };
 
+// Returns a user's friend array
+async function getFriendList(userName) {
+  const user = await DB.findOne({ userName: userName });
+  return user.friends;
+}
+
+// Adds a friend to a user's array
+async function addFriend(userName, friendName) {
+
+  // Find the user document based on the userName
+  const filter = { userName: userName };
+  const update = { $push: { friends: friendName } };
+  const options = { returnOriginal: false };
+
+  // Perform the update operation
+  const result = await DB.findOneAndUpdate(filter, update, options);
+
+  return result.value;
+};
+
 
 // Finds a goal and completes it
 async function completeGoal(userName, goalID) {
@@ -105,6 +125,20 @@ async function deleteGoal(userName, goalID) {
   return updatedGoal;
 };
 
+// Deletes a friend from a User's friend list
+async function deleteGoal(userName, friendName) {
+  const foundUser = await getUser(userName);
+  const foundUserID = foundUser._id;
+  const foundFriends = foundUser.friends;
+  const friendToDelete = foundFriends.find((f) => f == friendName);
+  foundFriends.splice(foundFriends.indexOf(friendToDelete), 1);
+
+  // put back in DB friend array
+  const updatedList = await DB.updateOne({ _id: foundUserID }, { $set: { friends: foundFriends } });
+
+  return updatedList;
+};
+
 
 
 module.exports = {
@@ -115,5 +149,8 @@ module.exports = {
   findUserWithToken,
   addGoal,
   completeGoal,
+  deleteGoal,
+  addFriend,
+  getFriendList,
   deleteGoal
 };

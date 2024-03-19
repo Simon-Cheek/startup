@@ -1,10 +1,3 @@
-
-// only allow signed in users onto this page
-if (!localStorage.getItem("username")) {
-    alert("Please Sign In!");
-    window.location.href = "index.html";
-}
-
 // add event listener to adding friends
 const addFriend = document.querySelector("#add-form");
 
@@ -16,10 +9,10 @@ addFriend.addEventListener("submit", async (e) => {
     const friendUser = newFriend.value;
     newFriend.value = "";
     const friend = await fetch(`/api/${friendUser}`);
-    const friendInfo = await friend.text();
+    const friendInfo = await friend.json();
 
     // alert if no friend, else add to friend list
-    if (!friendInfo) {
+    if (!friendInfo.userName) {
         alert("Prospective friend does not yet exist :(");
     } else {
 

@@ -106,38 +106,27 @@ apiRouter.post('/goal/:name', async (req, res) => {
 });
 
 // adds a friend to a user
-apiRouter.post('/friend/:friendName', (req, res) => {
+apiRouter.post('/friend/:friendName', async (req, res) => {
     let currentUsername = req.body.user; // string "name"
+    let userFriends = await DB.getFriendList(currentUsername);
+
     let friendName = req.params.friendName;
-    if (findUser(friendName)) {
-        let currentUser = findUser(currentUsername);
-        currentUser.friends.push(friendName);
-        res.send(currentUser);
+    let friend = await DB.getUser(friendName);
+
+    if (!friend) {
+        res.status(400).send({ msg: "Friend doesn't exist!" });
+        return;
+    }
+
+    if (userFriends.includes(friendName)) {
+        res.status(400).send({ msg: "Already a friend!" });
+        return;
     } else {
-        console.log("Friend does not exist!");
-        res.send(0);
+        const newFriend = await DB.addFriend(currentUsername, friendName);
+        res.send(newFriend);
     }
 });
 
-// adds a user to the array
-apiRouter.post('/', (req, res) => {
-    let user = req.body.user;
-
-    // parse out prospective username to make sure username isn't already in use
-    let name = user.name;
-    let existingUser = findUser(name);
-
-
-    if (user.name && user.friends && user.goals && !existingUser) {
-
-        // push user to array of users
-        users.push(user);
-        res.send(users);
-    } else {
-        console.log("Tried to create invalid user!");
-        res.send([]);
-    }
-});
 
 // edits a goal's completion status
 apiRouter.patch('/:user/:id', async (req, res) => {
@@ -162,12 +151,19 @@ apiRouter.delete('/remove/:user/:id', async (req, res) => {
 });
 
 // deletes a friend from the user's array
-apiRouter.delete('/friend/:friendName', (req, res) => {
-    let friendName = req.params.friendName;
+apiRouter.delete('/friend/:friendName', async (req, res) => {
     let currentUsername = req.body.user; // string "name"
-    let currentUser = findUser(currentUsername);
-    currentUser.friends.splice(currentUser.friends.indexOf(friendName), 1);
-    res.send(currentUser);
+    let userFriends = await DB.getFriendList(currentUsername);
+
+    let friendName = req.params.friendName;
+
+    if (userFriends.includes(friendName)) {
+        const newFriendList = await DB.deleteGoal(currentUsername, friendName);
+        res.send(newFriendList);
+        return;
+    } else {
+        res.status(400).send({ msg: "Not already a friend!" });
+    }
 });
 
 // default path if unknown
