@@ -17,5 +17,11 @@ registerForm.addEventListener('submit', async (e) => {
             'content-type': 'application/json'
         }
     });
-    console.log(registerUser);
+
+    // Redirect or alert if failed!
+    if (registerUser.status == 200) {
+        window.location.href = "profile.html";
+    } else {
+        alert("Authentication Failed!");
+    }
 });
