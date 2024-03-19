@@ -23,7 +23,9 @@ let userObj = {};
 // fetches user info and makes available
 async function getUserInfo() {
     const fetchedUser = await fetch(`/api/${currentUser}`);
+    console.log(fetchedUser);
     userObj = await fetchedUser.json(); // userObj.goals = array
+    console.log(userObj);
 }
 
 

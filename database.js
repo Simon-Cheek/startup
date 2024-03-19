@@ -18,6 +18,16 @@ function getUser(userName) {
   return DB.findOne({ userName: userName });
 }
 
+async function getAll() {
+  try {
+    const item = await DB.find().toArray();
+    console.log(item);
+    return item;
+  } catch (error) {
+    console.log("HELP", error);
+  }
+}
+
 
 // Creates a new user, hashes password and assigns a token
 async function createUser(userName, password) {
@@ -53,6 +63,7 @@ async function findUserWithToken(authToken) {
 
 
 module.exports = {
+  getAll,
   getUser,
   createUser,
   setAuthCookie,

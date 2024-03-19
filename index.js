@@ -24,16 +24,18 @@ app.use(express.static('public'));
 let apiRouter = express.Router();
 app.use('/api', apiRouter);
 
-// gets a list of all users
-apiRouter.get('/users/all', (req, res) => {
+// gets a list of all users DELETE THIS BEFORE DEPLOY
+apiRouter.get('/users/all', async (req, res) => {
+    const users = await DB.getAll();
     res.send(users);
 })
 
 // gets specifc user
-apiRouter.get('/:name', (req, res) => {
+apiRouter.get('/:name', async (req, res) => {
     let name = req.params.name;
-    let user = findUser(name);
-    res.send(user);
+    const { userName, friends, goals } = await DB.getUser(name);
+    console.log({ userName, friends, goals });
+    res.send({ userName, friends, goals });
 });
 
 // gets stock price from finnhub
@@ -179,36 +181,3 @@ app.use((req, res) => {
 app.listen(4000, () => {
     console.log("Listening on port 4000!");
 });
-
-
-
-// Mock Database Information
-
-let users = [{ name: "username", friends: [], goals: [{}] }];
-
-/* 
-
-USER
-name: name
-friends: []
-goals: [{}]
-
-GOAL
-type: daily/weekly
-content: content
-date: date
-completed: false
-
-
-*/
-
-
-// Database Manipulation Placeholders
-
-// search for user within array of users
-function findUser(name) {
-    let user = users.find((u) => {
-        return u.name == name;
-    });
-    return user ? user : null;
-}
