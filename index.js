@@ -143,18 +143,19 @@ apiRouter.post('/', (req, res) => {
 apiRouter.patch('/:user/:id', async (req, res) => {
     const userName = req.params.user;
     const id = req.params.id;
-    const updatedGoal = await DB.completeGoal(userName, id);
-    res.send(updatedGoal);
+    const updatedGoals = await DB.completeGoal(userName, id);
+    res.send(updatedGoals);
 });
 
 // deletes a goal from the user's array
-apiRouter.delete('/remove/:user/:id', (req, res) => {
+apiRouter.delete('/remove/:user/:id', async (req, res) => {
     const userName = req.params.user;
-    const user = findUser(userName);
     const id = req.params.id;
-    const goal = user.goals.find((g) => g.id == id);
-    user.goals.splice(user.goals.indexOf(goal), 1);
-    res.send(user);
+    const updatedUser = await DB.deleteGoal(userName, id);
+    res.send(updatedUser);
+    // const goal = user.goals.find((g) => g.id == id);
+    // user.goals.splice(user.goals.indexOf(goal), 1);
+    // res.send(user);
 });
 
 // deletes a friend from the user's array
