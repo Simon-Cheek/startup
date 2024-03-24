@@ -1,5 +1,6 @@
 const express = require('express');
 const DB = require('./database.js');
+const WS = require('./websock.js');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const app = express();
