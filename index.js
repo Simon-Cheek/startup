@@ -1,6 +1,7 @@
 const express = require('express');
 const DB = require('./database.js');
 const WS = require('./websock.js');
+const { launchSock } = require('./websock.js');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const app = express();
@@ -176,6 +177,8 @@ app.use((req, res) => {
 
 
 
-app.listen(4000, () => {
+const httpServer = app.listen(4000, () => {
     console.log("Listening on port 4000!");
 });
+
+launchSock(httpServer);
