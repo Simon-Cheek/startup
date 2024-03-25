@@ -1,7 +1,6 @@
 const express = require('express');
 const DB = require('./database.js');
-const WS = require('./websock.js');
-const { launchSock } = require('./websock.js');
+const { launchSock, alertFriends } = require('./websock.js');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const app = express();
@@ -125,7 +124,7 @@ apiRouter.post('/friend/:friendName', async (req, res) => {
         return;
     } else {
         const newFriend = await DB.addFriend(currentUsername, friendName);
-        WS.alertFriends(currentUsername, friendName);
+        alertFriends(currentUsername, friendName);
         res.send(newFriend);
     }
 });

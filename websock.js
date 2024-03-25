@@ -4,6 +4,9 @@ const url = require('url');
 const wss = new WebSocketServer({ noServer: true });
 
 
+const userConnections = new Map();
+
+
 function launchSock(httpServer) {
 
 
@@ -13,8 +16,6 @@ function launchSock(httpServer) {
             wss.emit('connection', ws, request);
         });
     });
-
-    const userConnections = new Map();
 
     // Handle User Connections and Add them to the Map (THERE MUST BE A USERNAME PASSED AS A HEADER)
     wss.on('connection', (ws, req) => {
@@ -59,7 +60,8 @@ function alertFriends(userName, friendUser) {
 }
 
 
+// Export the launchSock function
 module.exports = {
-    alertFriends,
-    launchSock
-}
+    launchSock,
+    alertFriends
+};
