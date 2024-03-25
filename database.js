@@ -49,7 +49,7 @@ async function createUser(userName, password) {
 // Creates Auth Cookie and Sets it
 function setAuthCookie(res, authToken) {
   res.cookie('token', authToken, {
-    // secure: true,
+    secure: true,
     httpOnly: true,
     sameSite: 'strict',
   });
