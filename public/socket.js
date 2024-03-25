@@ -66,8 +66,7 @@ function displayFriendNotif(friendName) {
 
 
 const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
-const socketURL = `${protocol}://localhost:9900?userName=${localStorage.getItem('username')}`
-console.log(socketURL)
+const socketURL = `${protocol}://${window.location.host}?userName=${localStorage.getItem('username')}`
 const socket = new WebSocket(socketURL);
 
 socket.onmessage = async (e) => {
