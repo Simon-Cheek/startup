@@ -124,7 +124,7 @@ apiRouter.post('/friend/:friendName', async (req, res) => {
         return;
     } else {
         const newFriend = await DB.addFriend(currentUsername, friendName);
-        WS.alertFriends(currentUsername);
+        WS.alertFriends(currentUsername, friendName);
         res.send(newFriend);
     }
 });

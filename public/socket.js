@@ -42,7 +42,7 @@ function displayFriendNotif(friendName) {
 
         const info = document.createElement("p");
         info.style.marginBottom = "0";
-        info.innerText = `${friendName} added you to their list!`
+        info.innerText = `${friendName} added you to their Friends List!`
         newPopUp.appendChild(info);
 
         const page = document.querySelector("main");
@@ -66,10 +66,12 @@ function displayFriendNotif(friendName) {
 
 
 const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
-const socket = new WebSocket(`${protocol}://localhost:9900?userName=${localStorage.getItem('username')}`);
+const socketURL = `${protocol}://localhost:9900?userName=${localStorage.getItem('username')}`
+console.log(socketURL)
+const socket = new WebSocket(socketURL);
 
 socket.onmessage = async (e) => {
-    const friendedUser = await JSON.parse(e.data.text());
+    const friendedUser = e.data;
     displayFriendNotif(friendedUser);
 }
 
