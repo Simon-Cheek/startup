@@ -1,34 +1,76 @@
-const createPopUp = new Promise((res, rej) => {
+// Websocket placeholder
 
-    setInterval(
-        () => {
+// const createPopUp = new Promise((res, rej) => {
 
-            // create the div and manage
-            const newPopUp = document.createElement("div");
-            newPopUp.classList.add("pop-up");
+//     setInterval(
+//         () => {
 
-            const info = document.createElement("p");
-            info.style.marginBottom = "0";
-            info.innerText = `Friend${Math.floor(Math.random() * 1000)} added you to their list!`
-            newPopUp.appendChild(info);
+//             // create the div and manage
+//             const newPopUp = document.createElement("div");
+//             newPopUp.classList.add("pop-up");
 
-            const page = document.querySelector("main");
-            page.appendChild(newPopUp);
+//             const info = document.createElement("p");
+//             info.style.marginBottom = "0";
+//             info.innerText = `Friend${Math.floor(Math.random() * 1000)} added you to their list!`
+//             newPopUp.appendChild(info);
 
-            setTimeout(() => {
-                newPopUp.classList.add("disappear");
-            }, 4000)
+//             const page = document.querySelector("main");
+//             page.appendChild(newPopUp);
 
-            setTimeout(() => {
-                newPopUp.style.display = "none";
-            }, 5000)
+//             setTimeout(() => {
+//                 newPopUp.classList.add("disappear");
+//             }, 4000)
 
-            setTimeout(() => {
-                newPopUp.remove();
-            }, 6000)
+//             setTimeout(() => {
+//                 newPopUp.style.display = "none";
+//             }, 5000)
 
-        }, 15000
-    )
-})
+//             setTimeout(() => {
+//                 newPopUp.remove();
+//             }, 6000)
+
+//         }, 15000
+//     )
+// })
+
+function displayFriendNotif(friendName) {
+    const createPopUp = new Promise((res, rej) => {
+
+        // create the div and manage
+        const newPopUp = document.createElement("div");
+        newPopUp.classList.add("pop-up");
+
+        const info = document.createElement("p");
+        info.style.marginBottom = "0";
+        info.innerText = `${friendName} added you to their list!`
+        newPopUp.appendChild(info);
+
+        const page = document.querySelector("main");
+        page.appendChild(newPopUp);
+
+        setTimeout(() => {
+            newPopUp.classList.add("disappear");
+        }, 4000)
+
+        setTimeout(() => {
+            newPopUp.style.display = "none";
+        }, 5000)
+
+        setTimeout(() => {
+            newPopUp.remove();
+            res('Finished Notification!');
+        }, 6000)
+
+    });
+}
+
+
+const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+const socket = new WebSocket(`${protocol}://localhost:9900?userName=${localStorage.getItem('username')}`);
+
+socket.onmessage = async (e) => {
+    const friendedUser = await JSON.parse(e.data.text());
+    displayFriendNotif(friendedUser);
+}
 
 

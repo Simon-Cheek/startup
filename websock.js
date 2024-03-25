@@ -1,4 +1,5 @@
 const { WebSocketServer } = require('ws');
+const url = require('url');
 
 const wss = new WebSocketServer({ port: 9900 });
 
@@ -6,7 +7,15 @@ const userConnections = Map();
 
 // Handle User Connections and Add them to the Map (THERE MUST BE A USERNAME PASSED AS A HEADER)
 wss.on('connection', (ws, req) => {
-    const userName = req.headers['userName']; // Assuming you're passing user ID in headers
+
+    const queryParams = url.parse(req.url, true).query;
+    const userName = queryParams['username']; // Accessing the 'username' query parameter
+
+    if (!userName) {
+        console.error('Username not provided in the WebSocket URL.');
+        return ws.close();
+    }
+
     const connections = userConnections.get(userName) || [];
     connections.push(ws);
     userConnections.set(userName, connections);
@@ -28,9 +37,10 @@ wss.on('connection', (ws, req) => {
 });
 
 // Function for telling users (each live connection of a single user) that someone added them as a friend
-function alertFriends() {
+function alertFriends(userName) {
     const connections = userConnections.get(userName) || [];
     connections.forEach(ws => {
+        message = 'fill this in later';
         ws.send(message);
     });
 }
