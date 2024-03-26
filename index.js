@@ -25,12 +25,6 @@ app.use(express.static('public'));
 let apiRouter = express.Router();
 app.use('/api', apiRouter);
 
-// gets a list of all users DELETE THIS BEFORE DEPLOY
-apiRouter.get('/users/all', async (req, res) => {
-    const users = await DB.getAll();
-    res.send(users);
-})
-
 // gets specifc user
 apiRouter.get('/:name', async (req, res) => {
     try {
