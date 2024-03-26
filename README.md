@@ -78,3 +78,10 @@ Welcome to my startup, *Gollab*! This software stands as an oppurtunity for prof
 - **Stores App Data in MongoDB**: Utilizes MongoDB Atlas to store user and goal data in objects
 - **Stores Authentication Data (Credentials) in MongoDB**: Success! Stores user info and encrypted passwords in DB
 - **Restricts App Functionality Based upon Login**: Success! Forces users to login to view any page and interact with app
+
+### Websocket Deliverable:
+
+- **Backend Listens for WebSocket Connections**: Success! Websock.js listens for connections from frontend and stores them in a Map
+- **Frontend Makes Websocket Connections**: Success! Websocket.js in the Public directory creates a connection on each page except login
+- **Data sent over Websocket**: A friend's username is sent to a specific user if they are added to their friend's list.
+- **Websocket Data displayed in the app interface**: Usernames of friends who add users are then displayed in a message informing the user that someone else added them to their friend's list!
