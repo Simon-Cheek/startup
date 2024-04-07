@@ -62,6 +62,7 @@ button {
 #logo {
     border-radius: 16px;
     width: 80px;
+    margin-right: 0.5em;
 }
 
 #main-title {
@@ -438,6 +439,20 @@ label {
     justify-content: center;
     align-items: center;
 }
+
+/* REACT STYLING */
+
+div.container {
+    max-width: 100% !important;
+}
+
+#nav-container {
+    display: flex;
+    justify-content: space-between !important;
+}
+
+
+
 
 @keyframes popup-fade {
     from {

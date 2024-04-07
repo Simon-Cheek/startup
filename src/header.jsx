@@ -1,36 +1,27 @@
+import React from 'react';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 import './app.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import logo from './Assets/logo.png';
 
 export function Header() {
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a className="navbar-brand" href="index.html"> <img src="Assets/logo.png" alt="Logo" id="logo" /><span
-                id="main-title">Gollab</span>
-            </a>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul className="navbar-nav">
-                    <li className="nav-item active">
-                        <a className="nav-link" href="profile.html"><span className="nav-text">Profile</span><span
-                            className="sr-only">(current)</span></a>
-                    </li>
-
-                    <li className="nav-item active">
-                        <a className="nav-link" href="goals.html"><span className="nav-text">My Goals</span><span
-                            className="sr-only">(current)</span></a>
-                    </li>
-
-                    <li className="nav-item active">
-                        <a className="nav-link" href="friendlist.html"><span className="nav-text">Friends</span><span
-                            className="sr-only">(current)</span></a>
-                    </li>
-
-                </ul>
-            </div>
-        </nav>
-    )
-
+        <Navbar bg="dark" data-bs-theme="dark" expand="lg" className="bg-body-tertiary">
+            <Container id="nav-container">
+                <Navbar.Brand href="#home" id="main-title">
+                    <img src={logo} id="logo"></img>
+                    Gollab
+                </Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="me-auto">
+                        <Nav.Link href="#home" className="nav-text">Profile</Nav.Link>
+                        <Nav.Link href="#link" className="nav-text">My Goals</Nav.Link>
+                        <Nav.Link href="#link" className="nav-text">Friends</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
+    );
 }
