@@ -5,7 +5,7 @@ import { verify } from './SupportJS/login';
 
 export function Home() {
 
-    React.useEffect(async () => {
+    React.useEffect(() => {
         verify();
     });
 
