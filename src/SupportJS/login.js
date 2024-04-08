@@ -1,11 +1,11 @@
 
 // redirect to profile if logged in
-async function verify() {
+export async function verify() {
     try {
         const user = await fetch('/api/user/me');
         const userInfo = await user.json();
         localStorage.setItem('username', userInfo.userName);
-        window.location.href = 'profile.html';
+        window.location.href = '/profile';
     } catch {
         console.log("Not Logged in!");
     }
@@ -36,7 +36,7 @@ async function verify() {
             // successful login
         } else if (loginUser.status == 200) {
             localStorage.setItem("username", user);
-            window.location.href = 'profile.html';
+            window.location.href = '/profile';
 
         } else {
             alert("Something unexpected happened!");
