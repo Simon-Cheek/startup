@@ -2,7 +2,9 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 import { Header } from './header';
-import { BrowserRouter } from 'react-router-dom';
+import { Footer } from './footer';
+import { Home } from './home';
+import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 
 export default function App() {
     return (
@@ -12,7 +14,13 @@ export default function App() {
 
                 <Routes>
                     {/* Routes go here */}
+                    <Route path='/' element={<Home />} />
+                    <Route path='/profile'>Profile</Route>
+                    <Route path='/goals'>Goals</Route>
+                    <Route path='/friendlist'>Friendlist</Route>
                 </Routes>
+
+                <Footer />
 
             </BrowserRouter>
         </>
