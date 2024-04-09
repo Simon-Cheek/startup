@@ -19,7 +19,7 @@ const finnhubClient = new finnhub.DefaultApi();
 // middleware
 app.use(express.json());
 app.use(cookieParser());
-app.use(express.static('/'));
+app.use(express.static('public'));
 // Trust headers that are forwarded from the proxy so we can determine IP addresses
 app.set('trust proxy', true);
 
@@ -169,8 +169,9 @@ apiRouter.delete('/friend/:friendName', async (req, res) => {
     }
 });
 
-app.get('*', (req, res) => {
-    res.sendFile('index.html');
+// Return the application's default page if the path is unknown
+app.use((_req, res) => {
+    res.sendFile('index.html', { root: 'public' });
 });
 
 
