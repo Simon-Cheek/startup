@@ -23,7 +23,7 @@ export async function register() {
         // Redirect or alert if failed!
         if (registerUser.status == 200) {
             localStorage.setItem('username', userName);
-            window.location.href = "profile.html";
+            window.location.href = "/profile";
         } else {
             alert("Authentication Failed!");
         }

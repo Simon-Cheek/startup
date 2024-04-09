@@ -19,7 +19,9 @@ const finnhubClient = new finnhub.DefaultApi();
 // middleware
 app.use(express.json());
 app.use(cookieParser());
-app.use(express.static('public'));
+app.use(express.static('/'));
+// Trust headers that are forwarded from the proxy so we can determine IP addresses
+app.set('trust proxy', true);
 
 // routes api information / requests
 let apiRouter = express.Router();
@@ -40,14 +42,14 @@ apiRouter.get('/:name', async (req, res) => {
 // gets stock price from finnhub
 apiRouter.get('/stock/:company', (req, res) => {
     const company = req.params.company;
-    try {
-        finnhubClient.quote(`${company}`, (error, data, response) => {
-            res.send(data.c.toString());
-        });
-    } catch (e) {
-        console.log(e);
-        res.send(e);
-    }
+    finnhubClient.quote(`${company}`, (error, data, response) => {
+        if (error) {
+            console.error(error);
+            res.status(500).send('Internal Server Error');
+            return;
+        }
+        res.send(data.c.toString());
+    });
 });
 
 // Verifies an Auth Token
@@ -159,7 +161,7 @@ apiRouter.delete('/friend/:friendName', async (req, res) => {
     let friendName = req.params.friendName;
 
     if (userFriends.includes(friendName)) {
-        const newFriendList = await DB.deleteGoal(currentUsername, friendName);
+        const newFriendList = await DB.deleteFriend(currentUsername, friendName);
         res.send(newFriendList);
         return;
     } else {
@@ -167,11 +169,9 @@ apiRouter.delete('/friend/:friendName', async (req, res) => {
     }
 });
 
-// default path if unknown
-app.use((req, res) => {
-    res.sendFile('index.html', { root: 'public' });
+app.get('*', (req, res) => {
+    res.sendFile('index.html');
 });
-
 
 
 

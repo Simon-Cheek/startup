@@ -8,6 +8,7 @@ import { Register } from './register';
 import { Profile } from './profile';
 import { Create } from './create';
 import { Goals } from './goals';
+import { Friendlist } from './friendlist';
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 
 export default function App() {
@@ -17,12 +18,13 @@ export default function App() {
                 <Header />
 
                 <Routes>
-                    <Route path='/' element={<Home />} />
+                    <Route exact path='/' element={<Home />} />
                     <Route path='/profile' element={<Profile />} />
                     <Route path='/goals' element={<Goals />} />
-                    <Route path='/friendlist'>Friendlist</Route>
+                    <Route path="/friendlist" element={<Friendlist />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/create" element={<Create />} />
+                    <Route path="*" />
                 </Routes>
 
                 <Footer />
