@@ -85,3 +85,10 @@ Welcome to my startup, *Gollab*! This software stands as an oppurtunity for prof
 - **Frontend Makes Websocket Connections**: Success! Websocket.js in the Public directory creates a connection on each page except login
 - **Data sent over Websocket**: A friend's username is sent to a specific user if they are added to their friend's list.
 - **Websocket Data displayed in the app interface**: Usernames of friends who add users are then displayed in a message informing the user that someone else added them to their friend's list!
+
+### React Deliverable:
+
+- **Bundled Using Vite**: Success!
+- **Multiple Functional React Components**: Success! Header and Footer split into components as well as each individual HTML page to form Single Page Application.
+- **React Router**: Several HTML Pages combined into one using React Router on App.JSX
+- **React Hooks**: useEffect hook used on almost each major page component as well as useLocation and a few other pieces
