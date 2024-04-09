@@ -40,9 +40,14 @@ apiRouter.get('/:name', async (req, res) => {
 // gets stock price from finnhub
 apiRouter.get('/stock/:company', (req, res) => {
     const company = req.params.company;
-    finnhubClient.quote(`${company}`, (error, data, response) => {
-        res.send(data.c.toString());
-    });
+    try {
+        finnhubClient.quote(`${company}`, (error, data, response) => {
+            res.send(data.c.toString());
+        });
+    } catch (e) {
+        console.log(e);
+        res.send(e);
+    }
 });
 
 // Verifies an Auth Token

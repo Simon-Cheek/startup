@@ -39,7 +39,7 @@ export function Profile() {
                 </section>
 
                 <div>
-                    <Link to="/tbd"><button className="bttn-default">View All Goals</button></Link>
+                    <Link to="/goals"><button className="bttn-default">View All Goals</button></Link>
                     <Link to="/create"><button className="bttn-default">Create Goal</button></Link>
                     <button className="bttn-default" id="logout" onClick={logOut}>LogOut</button>
                 </div>
