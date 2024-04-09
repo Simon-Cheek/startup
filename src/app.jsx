@@ -4,6 +4,7 @@ import './app.css';
 import { Header } from './header';
 import { Footer } from './footer';
 import { Home } from './home';
+import { Register } from './register';
 import { Profile } from './profile';
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 
@@ -18,6 +19,7 @@ export default function App() {
                     <Route path='/profile' element={<Profile />} />
                     <Route path='/goals'>Goals</Route>
                     <Route path='/friendlist'>Friendlist</Route>
+                    <Route path="/register" element={<Register />} />
                 </Routes>
 
                 <Footer />

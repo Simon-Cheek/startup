@@ -1,6 +1,7 @@
 import React from 'react';
 import './app.css';
 import { verify } from './SupportJS/login';
+import { Link } from 'react-router-dom';
 
 
 export function Home() {
@@ -34,9 +35,9 @@ export function Home() {
 
                     <button className="btn login-btn" type="submit">Submit</button>
 
-                    <a href="signup.html">
+                    <Link to="/register">
                         <p className="signup-prompt">New to Gollab? Register here!</p>
-                    </a>
+                    </Link>
 
                 </form>
             </div>

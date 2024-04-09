@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 export function Footer() {
 
     React.useEffect(() => {
-        // updatePrices();
+        updatePrices();
     });
 
     const location = useLocation();
@@ -15,7 +15,7 @@ export function Footer() {
 
     return (
         <>
-            {location == "/" && <div id="stock-container" className="footer">
+            {location.pathname == "/" && <div id="stock-container" className="footer">
                 <div className="stock-section">
                     <p className="price" id="meta"></p>
                     <p className="price" id="aapl"></p>
