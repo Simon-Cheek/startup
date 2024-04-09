@@ -6,6 +6,7 @@ import { Footer } from './footer';
 import { Home } from './home';
 import { Register } from './register';
 import { Profile } from './profile';
+import { Create } from './create';
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
                     <Route path='/goals'>Goals</Route>
                     <Route path='/friendlist'>Friendlist</Route>
                     <Route path="/register" element={<Register />} />
+                    <Route path="/create" element={<Create />} />
                 </Routes>
 
                 <Footer />

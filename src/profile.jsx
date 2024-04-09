@@ -4,6 +4,7 @@ import { verifyUser } from './SupportJS/verify';
 import { setupWS } from './SupportJS/socket';
 import { goalConfig } from './SupportJS/goal';
 import { logOut } from './SupportJS/logout';
+import { Link } from 'react-router-dom';
 
 
 
@@ -38,8 +39,8 @@ export function Profile() {
                 </section>
 
                 <div>
-                    <a href="goals.html"><button className="bttn-default">View All Goals</button></a>
-                    <a href="create.html"><button className="bttn-default">Create Goal</button></a>
+                    <Link to="/tbd"><button className="bttn-default">View All Goals</button></Link>
+                    <Link to="/create"><button className="bttn-default">Create Goal</button></Link>
                     <button className="bttn-default" id="logout" onClick={logOut}>LogOut</button>
                 </div>
             </div>
