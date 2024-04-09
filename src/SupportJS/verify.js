@@ -1,14 +1,17 @@
-async function verify() {
-    const user = await fetch('/api/user/me');
-    if (user.status !== 200) {
-        window.location.href = "index.html"
-    } else {
+export async function verifyUser() {
+    try {
+        const user = await fetch('/api/user/me');
+        if (!user.ok) {
+            throw new Error("No User");
+        }
         const userInfo = await user.json();
         localStorage.setItem('username', userInfo.userName);
+    } catch (e) {
+        console.log(e);
+        window.location.href = "/"
     }
 }
 
-setTimeout(verify, 500);
 
 
 // async function login() {

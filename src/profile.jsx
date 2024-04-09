@@ -1,14 +1,24 @@
 import React from 'react';
 import './app.css';
+import { verifyUser } from './SupportJS/verify';
+import { setupWS } from './SupportJS/socket';
+import { goalConfig } from './SupportJS/goal';
+import { logOut } from './SupportJS/logout';
 
 
 
 export function Profile() {
 
+    React.useEffect(() => {
+        verifyUser();
+        setupWS();
+        goalConfig();
+    });
+
 
 
     return (
-        <div class="main">
+        <div className="main">
             <div className="main-display">
                 <section>
                     <h1 className="statement underline">Welcome, <span className="collab user-info">Username</span></h1>
@@ -30,7 +40,7 @@ export function Profile() {
                 <div>
                     <a href="goals.html"><button className="bttn-default">View All Goals</button></a>
                     <a href="create.html"><button className="bttn-default">Create Goal</button></a>
-                    <button className="bttn-default" id="logout">LogOut</button>
+                    <button className="bttn-default" id="logout" onClick={logOut}>LogOut</button>
                 </div>
             </div>
         </div>

@@ -3,12 +3,13 @@
 export async function verify() {
     try {
         const user = await fetch('/api/user/me');
+        if (!user.ok) {
+            throw new Error("No User");
+        }
         const userInfo = await user.json();
         localStorage.setItem('username', userInfo.userName);
         window.location.href = '/profile';
-    } catch {
-        console.log("Not Logged in!");
-    }
+    } catch (e) { }
 
     // otherwise, add login features below
     const loginForm = document.querySelector("#login-form");

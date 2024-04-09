@@ -12,7 +12,7 @@ export function updatePrices() {
             .then(response => {
                 output.innerText = `${name.toUpperCase()}: ${response}`;
             })
-            .catch(error => console.log("DID NOT WORK", error));
+            .catch(error => { });
     }
 
     getPrice("aapl", aapl);

@@ -23,12 +23,12 @@ export function Home() {
                 <form action="index.html" method="GET" className="login" id="login-form">
                     <h3>Login</h3>
                     <section>
-                        <label for="user">Username</label>
+                        <label htmlFor="user">Username</label>
                         <input type="text" name="user" id="user" />
                     </section>
 
                     <section>
-                        <label for="pw">Password</label>
+                        <label htmlFor="pw">Password</label>
                         <input type="password" name="pw" id="pw" />
                     </section>
 

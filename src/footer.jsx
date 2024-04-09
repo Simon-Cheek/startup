@@ -1,19 +1,21 @@
 import React from 'react';
 import './app.css';
 import { updatePrices } from './SupportJS/stocks';
+import { useLocation } from 'react-router-dom';
 
 
 export function Footer() {
 
     React.useEffect(() => {
-        updatePrices();
+        // updatePrices();
     });
 
+    const location = useLocation();
 
 
     return (
         <>
-            <div id="stock-container" className="footer">
+            {location == "/" && <div id="stock-container" className="footer">
                 <div className="stock-section">
                     <p className="price" id="meta"></p>
                     <p className="price" id="aapl"></p>
@@ -21,7 +23,7 @@ export function Footer() {
                     <p className="price" id="nflx"></p>
                     <p className="price" id="goog"></p>
                 </div>
-            </div>
+            </div>}
             <div className="credits">
                 <p>Created by <a href="https://www.simoncheek.com" target="_blank">Simon Cheek</a><span
                     className="credit-dot">&#x2022;</span></p>

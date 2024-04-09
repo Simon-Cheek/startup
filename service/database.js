@@ -126,7 +126,7 @@ async function deleteGoal(userName, goalID) {
 };
 
 // Deletes a friend from a User's friend list
-async function deleteGoal(userName, friendName) {
+async function deleteFriend(userName, friendName) {
   const foundUser = await getUser(userName);
   const foundUserID = foundUser._id;
   const foundFriends = foundUser.friends;
@@ -152,5 +152,5 @@ module.exports = {
   deleteGoal,
   addFriend,
   getFriendList,
-  deleteGoal
+  deleteFriend
 };
