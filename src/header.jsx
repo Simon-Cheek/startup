@@ -16,9 +16,9 @@ export function Header() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="/profile" className="nav-text">Profile</Nav.Link>
-                        <Nav.Link href="/goals" className="nav-text">My Goals</Nav.Link>
-                        <Nav.Link href="/friendlist" className="nav-text">Friends</Nav.Link>
+                        <Nav.Link href="/profile"><span className="nav-text">Profile</span></Nav.Link>
+                        <Nav.Link href="/goals"><span className="nav-text">My Goals</span></Nav.Link>
+                        <Nav.Link href="/friendlist"><span className="nav-text">Friends</span></Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
