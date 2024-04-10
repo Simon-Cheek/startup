@@ -10,7 +10,7 @@ export function Header() {
         <Navbar bg="dark" data-bs-theme="dark" expand="lg" className="bg-body-tertiary header">
             <Container id="nav-container">
                 <Navbar.Brand href="/" id="main-title">
-                    <img src={logo} id="logo"></img>
+                    <img src={logo} id="logo" alt="Gollab Logo"></img>
                     Gollab
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
