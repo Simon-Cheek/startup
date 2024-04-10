@@ -61,58 +61,64 @@ export async function getFriend(friendName) {
 
     // main function
 
+    const friendInfo = await fetch(`/api/${friendName}`);
+    const friendObj = await friendInfo.json();
 
-
-    if (!friendName) {
+    if (!friendObj.userName) {
+        alert("Friend doesn't exist!");
         window.location.href = "/profile";
     } else {
-        const friendInfo = await fetch(`/api/${friendName}`);
-        if (friendInfo.ok) {
 
 
-            // fetch today's date
-            const curDate = new Date();
+        // fetch today's date
+        const curDate = new Date();
 
-            // Make username show on screen
-            let nameHolder = document.querySelector(".collab");
-            nameHolder.innerText = friendName;
+        // Make username show on screen
+        let nameHolder = document.querySelector(".collab");
+        nameHolder.innerText = friendName;
 
-            // Convert into object and display stats
-            const friendObj = await friendInfo.json();
-            updateStatus(friendObj);
+        // display stats
+        updateStatus(friendObj);
+
+        // Make sure you are a friend of their's
+        const friends = friendObj.friends;
+        const currentUser = localStorage.getItem('username');
+        if (!currentUser || !friends.includes(currentUser)) {
+            alert(`You are not ${friendName}'s friend!`);
+            window.location.href = '/profile';
+        }
 
 
-            // Display Goals
-            for (const goal of friendObj.goals) {
+        // Display Goals
+        for (const goal of friendObj.goals) {
 
-                const dailyList = document.querySelector("#daily-list-js");
-                const weeklyList = document.querySelector("#weekly-list-js");
-                const expiredList = document.querySelector("#expired-list-js");
+            const dailyList = document.querySelector("#daily-list-js");
+            const weeklyList = document.querySelector("#weekly-list-js");
+            const expiredList = document.querySelector("#expired-list-js");
 
-                if ((goal.type == "daily") && (goal.completed === false) && (new Date(goal.date).getDate() == curDate.getDate()) && (new Date(goal.date).getMonth() == curDate.getMonth())) {
-                    let content = document.createElement("p");
-                    content.innerText = goal.content;
-                    content.style.fontStyle = "italic";
-                    dailyList.appendChild(content);
+            if ((goal.type == "daily") && (goal.completed === false) && (new Date(goal.date).getDate() == curDate.getDate()) && (new Date(goal.date).getMonth() == curDate.getMonth())) {
+                let content = document.createElement("p");
+                content.innerText = goal.content;
+                content.style.fontStyle = "italic";
+                dailyList.appendChild(content);
 
-                } else if (filterWeekly(goal, curDate)) {
-                    let content = document.createElement("p");
-                    content.innerText = goal.content;
-                    content.style.fontStyle = "italic";
-                    weeklyList.appendChild(content);
+            } else if (filterWeekly(goal, curDate)) {
+                let content = document.createElement("p");
+                content.innerText = goal.content;
+                content.style.fontStyle = "italic";
+                weeklyList.appendChild(content);
 
+            } else {
+                let content = document.createElement("p");
+                content.innerText = goal.content;
+                if (goal.completed == true) {
+                    content.classList.add("green");
                 } else {
-                    let content = document.createElement("p");
-                    content.innerText = goal.content;
-                    if (goal.completed == true) {
-                        content.classList.add("green");
-                    } else {
-                        content.classList.add("red");
-                    }
-
-
-                    expiredList.appendChild(content);
+                    content.classList.add("red");
                 }
+
+
+                expiredList.appendChild(content);
             }
 
 

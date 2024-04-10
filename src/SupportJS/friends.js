@@ -80,7 +80,7 @@ export async function friendConfig() {
 
                 // add the view profile button
                 const link = document.createElement("a");
-                link.href = "friend.html";
+                link.href = `/friend/${friend}`;
 
                 const viewButton = document.createElement("button");
                 viewButton.classList.add("bttn-default", "bttn-small");

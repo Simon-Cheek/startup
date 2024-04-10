@@ -16,7 +16,6 @@ export function Friend() {
     location = location.pathname;
     if (location.length > 6) {
         friend = location.slice(8);
-        console.log(location);
     } else {
         console.log("something unexpected happened in data retrieval");
     }
