@@ -9,6 +9,7 @@ import { Profile } from './profile';
 import { Create } from './create';
 import { Goals } from './goals';
 import { Friendlist } from './friendlist';
+import { Friend } from './friend';
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 
 export default function App() {
@@ -24,6 +25,7 @@ export default function App() {
                     <Route path="/friendlist" element={<Friendlist />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/create" element={<Create />} />
+                    <Route path="/friend/*" element={<Friend />} />
                     <Route path="*" />
                 </Routes>
 
