@@ -19,7 +19,7 @@ const finnhubClient = new finnhub.DefaultApi();
 // middleware
 app.use(express.json());
 app.use(cookieParser());
-app.use(express.static('public'));
+app.use(express.static('public', { maxAge: 3600000 }));
 // Trust headers that are forwarded from the proxy so we can determine IP addresses
 app.set('trust proxy', true);
 
